@@ -16,12 +16,13 @@ TFM             = net10.0
 - Find the topic below, open **one** file, read it. Don't load the whole folder.
 - Paths are relative to this folder. `grep -ril <term> docs/` when the index doesn't name it.
 - `docs/mstest/` and `docs/testing-platform/` are the guides, `docs/api/` is the API reference of exactly the pinned packages.
-- The guides describe the current release and name the version a feature arrived in; the API reference is proof of what the pinned version has.
+- The guides name the version a feature arrived in; the API reference is proof of what the pinned version has.
+- Left out on purpose: other test platforms, migration from older versions, obsolete API, what needs a newer .NET SDK than the pinned one, WinUI and Microsoft Fakes.
 
 ## Sources
 
 - Guides: [dotnet/docs](https://github.com/dotnet/docs/tree/2afde00bc94b9c2ffa6a3d607be48f555f3fdc5c/docs/core/testing) (branch `live`, commit `2afde00`), © Microsoft, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
-  Changed for this copy: includes and snippets are inlined, links point to local files or learn.microsoft.com, package versions in examples follow the pins above, and everything about other test platforms is removed.
+  Changed for this copy: includes and snippets are inlined, links point to local files or learn.microsoft.com, package versions in examples follow the pins above, preview notes for the pinned versions are reworded as released, and what the list above names is removed.
 - API reference: generated from the assemblies and XML documentation of the NuGet packages `MSTest.TestFramework` 4.4.1 and `Microsoft.Testing.Platform` 2.4.1 ([microsoft/testfx](https://github.com/microsoft/testfx), MIT).
 
 ## Refresh
@@ -145,18 +146,12 @@ This file is generated — edit `scripts/refresh_docs.py`, not this file.
 - `docs/mstest/getting-started/overview.md` — **Get started with MSTest**: Learn how to create your first MSTest project and run tests.
 - `docs/mstest/getting-started/visual-basic.md` — **Get started with Visual Basic and MSTest**: Learn unit test concepts in .NET through an interactive experience building a sample Visual Basic solution step-by-step using MSTest.
 
-### `docs/mstest/migration/`
-
-- `docs/mstest/migration/v1-to-v3.md` — **MSTest migration to v3**: Learn about migrating from legacy MSTest (MSTest v1) to latest MSTest (MSTest v3).
-- `docs/mstest/migration/v3-to-v4.md` — **MSTest migration from v3 to v4**: Learn about migrating to MSTest v4.
-
 ### `docs/mstest/running-tests/`
 
 - `docs/mstest/running-tests/configure.md` — **Configure MSTest**: Learn how to configure MSTest.
 - `docs/mstest/running-tests/filter.md` — **Run selected unit tests**: How to use a filter expression to run selected unit tests with the dotnet test command in .NET Core.
 - `docs/mstest/running-tests/overview.md` — **Run tests with MSTest**: There are several ways to run MSTest tests depending on your needs.
 - `docs/mstest/running-tests/sdk.md` — **MSTest SDK configuration**: Learn how to configure MSTest.Sdk profiles, extensions, and advanced features.
-- `docs/mstest/running-tests/winui.md` — **Test WinUI 3 apps with MSTest and Microsoft.Testing.Platform**: Learn how to configure unpackaged and packaged full-trust WinUI 3 test apps with MSTest and Microsoft.Testing.Platform.
 
 ### `docs/mstest/writing-tests/`
 
@@ -186,7 +181,6 @@ This file is generated — edit `scripts/refresh_docs.py`, not this file.
 - `docs/testing-platform/features/crash-hang-dumps.md` — **Microsoft.Testing.Platform (MTP) crash and hang dumps**: Learn about the MTP extensions for collecting crash dumps and hang dumps during test execution.
 - `docs/testing-platform/features/diagnostics.md` — **Microsoft.Testing.Platform (MTP) diagnostics**: Learn about the MTP extensions that capture evidence, such as screen recordings, to help you diagnose a test run.
 - `docs/testing-platform/features/extensions-integration.md` — **Microsoft.Testing.Platform (MTP) Microsoft.Extensions integration**: Learn about the MTP extensions that bridge Microsoft.Testing.Platform to the Microsoft.Extensions.* libraries your application already uses.
-- `docs/testing-platform/features/fakes.md` — **Microsoft Fakes support for Microsoft.Testing.Platform (MTP)**: Learn about the MTP Fakes extension capabilities and how to use it.
 - `docs/testing-platform/features/hot-reload.md` — **Microsoft.Testing.Platform (MTP) Hot Reload**: Learn about the MTP Hot Reload extension for running tests with hot reload.
 - `docs/testing-platform/features/open-telemetry.md` — **Microsoft.Testing.Platform (MTP) OpenTelemetry**: Learn how to use the OpenTelemetry extension to emit traces and metrics from MTP.
 - `docs/testing-platform/features/overview.md` — **Microsoft.Testing.Platform features**: Learn about the various Microsoft.Testing.Platform features, both built-in and available as extensions.
@@ -195,10 +189,6 @@ This file is generated — edit `scripts/refresh_docs.py`, not this file.
 - `docs/testing-platform/features/terminal-output.md` — **Microsoft.Testing.Platform (MTP) terminal output**: Learn about the built-in terminal test reporter in MTP, including output modes, ANSI support, and progress indicators.
 - `docs/testing-platform/features/test-host-deployment.md` — **Microsoft.Testing.Platform (MTP) test host deployment**: Learn how MTP extensions control test host deployment and startup.
 - `docs/testing-platform/features/test-reports.md` — **Microsoft.Testing.Platform (MTP) test reports**: Learn about the MTP extensions that create test report files (TRX, HTML, JUnit, CTRF, Azure DevOps, GitHub Actions).
-
-### `docs/testing-platform/migration/`
-
-- `docs/testing-platform/migration/v1-to-v2.md` — **Migrating from Microsoft.Testing.Platform (MTP) v1 to v2**: Learn how to migrate to MTP v2 and understand the key changes.
 
 ### `docs/api/Microsoft.Testing.Platform.Builder/`
 
@@ -265,7 +255,6 @@ This file is generated — edit `scripts/refresh_docs.py`, not this file.
 ### `docs/api/Microsoft.Testing.Platform.Extensions.Messages/`
 
 - `docs/api/Microsoft.Testing.Platform.Extensions.Messages/AssertionFailureProperty.md` — **AssertionFailureProperty class**: Property that carries the structured `expected` and `actual` values of a failed assertion, so consumers can render an expected-vs-actual diff instead of only…
-- `docs/api/Microsoft.Testing.Platform.Extensions.Messages/CancelledTestNodeStateProperty.md` — **CancelledTestNodeStateProperty class**: Property that represents an eventual cancellation of a test node.
 - `docs/api/Microsoft.Testing.Platform.Extensions.Messages/CoverageAggregation.md` — **CoverageAggregation enum**: How per-scope values are combined for a threshold evaluation.
 - `docs/api/Microsoft.Testing.Platform.Extensions.Messages/CoverageMetric.md` — **CoverageMetric enum**: Identifies a code-coverage metric.
 - `docs/api/Microsoft.Testing.Platform.Extensions.Messages/CoverageReportFormat.md` — **CoverageReportFormat enum**: The on-disk format of a coverage report artifact.

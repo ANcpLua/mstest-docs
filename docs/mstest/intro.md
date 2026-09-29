@@ -23,34 +23,11 @@ MSTest supports a wide range of .NET platforms and target frameworks. The follow
 |----------|-------------------|-------------------|-------------------|-------|
 | **.NET** | .NET 8+ | Full parallelization | All attributes | Recommended for new projects |
 | **.NET Framework** | 4.6.2+ | Full parallelization | All attributes | Full feature support |
-| **WinUI 3** | .NET 8+ | UI thread | `UITestMethod` | Requires Windows App SDK; see [Test WinUI 3 apps with MSTest and MTP](running-tests/winui.md) |
 | **Native AOT** | .NET 8+ | Full parallelization | Most attributes | Limited feature set; see [Native AOT sample](https://github.com/microsoft/testfx/tree/main/samples/public/mstest-runner/NativeAotRunner) |
-| **Browser WebAssembly** | .NET 10+ custom host | Single-threaded | Limited | MTP execution support starts with the MSTest 4.4 preview |
-| **WASI WebAssembly** | .NET 10+ custom host | Single-threaded | Limited | MTP execution support starts with the MSTest 4.4 preview |
+| **Browser WebAssembly** | .NET 10+ custom host | Single-threaded | Limited | MTP execution support starts with MSTest 4.4 |
+| **WASI WebAssembly** | .NET 10+ custom host | Single-threaded | Limited | MTP execution support starts with MSTest 4.4 |
 
 ### Platform-specific considerations
-
-#### WinUI 3 testing
-
-WinUI 3 tests also require UI thread access for testing visual components:
-
-```csharp
-[TestClass]
-public class WinUITests
-{
-    [UITestMethod]
-    public void TestWinUIControl()
-    {
-        // Test runs on UI thread
-        var window = new MainWindow();
-        Assert.IsNotNull(window);
-    }
-}
-```
-
-To configure unpackaged or packaged full-trust WinUI 3 tests, see [Test WinUI 3 apps with MSTest and MTP](running-tests/winui.md).
-
-Starting with MSTest 4.4, Microsoft.Testing.Platform also supports unpackaged WinUI test applications. For setup details, see the [unpackaged WinUI sample](https://github.com/microsoft/testfx/tree/main/samples/public/mstest-runner/MSTestRunnerWinUIUnpackaged).
 
 #### Native AOT
 
@@ -58,7 +35,7 @@ Native AOT compilation is supported with some limitations due to reduced reflect
 
 #### Browser and WASI WebAssembly
 
-The MSTest 4.4 preview supports custom .NET 10 browser or WASI WebAssembly hosts. To run tests from a referenced MSTest assembly, call `AddMSTest`. In the host project, set `EnableMSTestRunner` to `true` and `GenerateTestingPlatformEntryPoint` to `false`. Keep the MSTest and MTP package versions aligned.
+MSTest 4.4 supports custom .NET 10 browser or WASI WebAssembly hosts. To run tests from a referenced MSTest assembly, call `AddMSTest`. In the host project, set `EnableMSTestRunner` to `true` and `GenerateTestingPlatformEntryPoint` to `false`. Keep the MSTest and MTP package versions aligned.
 
 On a single-threaded WebAssembly runtime, MSTest can't forcibly interrupt a timed-out test. Debugger wait isn't supported on browser or WASI, and browser doesn't support debugger launch options.
 
@@ -93,15 +70,7 @@ MSTest has undergone significant evolution across major versions:
 - **MSTest v3**: Modern rewrite with improved architecture and features
 - **MSTest v4**: Current version with enhanced features
 
-> [!NOTE]
-> MSTest 4.4 is under development as of August 2026. Features marked as introduced in MSTest 4.4 require a preview build until version 4.4.0 is released.
-
 For details on all releases, see the [MSTest changelog](https://github.com/microsoft/testfx/blob/main/docs/Changelog.md).
-
-If you're upgrading from an older version, see the migration guides:
-
-- [Migrate from MSTest v1 to v3](migration/v1-to-v3.md)
-- [Migrate from MSTest v3 to v4](migration/v3-to-v4.md)
 
 ### Breaking changes
 
@@ -112,6 +81,5 @@ The MSTest team carefully reviews and minimizes breaking changes. When breaking 
 - [Get started with MSTest](getting-started/overview.md)
 - [Write tests](writing-tests/overview.md)
 - [Run tests](running-tests/overview.md)
-- [Test WinUI 3 apps](running-tests/winui.md)
 - [Configure MSTest](running-tests/configure.md)
 - [MSTest code analyzers](analyzers/overview.md)

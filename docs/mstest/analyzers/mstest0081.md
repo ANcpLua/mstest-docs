@@ -11,9 +11,6 @@
 | **Introduced in version**           | 4.4.0 (preview)                                    |
 | **Is there a code fix**             | No                                                 |
 
-> [!IMPORTANT]
-> This analyzer is planned for MSTest 4.4 and is available only in preview builds until MSTest 4.4.0 is released.
-
 ## Cause
 
 `[assembly: TestFilterProvider(typeof(MyFilter))]` references a type that doesn't satisfy the requirements the adapter enforces at run time, or the assembly registers more than one test filter provider.

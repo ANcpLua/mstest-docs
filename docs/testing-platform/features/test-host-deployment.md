@@ -18,8 +18,6 @@ Meet these requirements before you use the extension:
 - To register an unsigned build-output layout, enable Developer Mode or configure sideloading.
 - Use a full-trust packaged desktop host. The extension doesn't support classic UWP, modern .NET UWP with `UseUwp`, or other AppContainer hosts.
 
-For a complete self-hosted WinUI configuration, see [Test WinUI 3 apps with MSTest and MTP](../../mstest/running-tests/winui.md).
-
 ### Manual registration
 
 ```csharp

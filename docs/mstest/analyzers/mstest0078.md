@@ -11,9 +11,6 @@
 | **Introduced in version**           | 4.4.0 (preview)                                    |
 | **Is there a code fix**             | No                                                 |
 
-> [!IMPORTANT]
-> Test dependencies are planned for MSTest 4.4 and are available only in preview builds until MSTest 4.4.0 is released.
-
 ## Cause
 
 A `[DependsOn]` attribute references a test by name, and the reference has a problem that the test framework can decide only at run time, such as a target that doesn't exist.

@@ -14,7 +14,6 @@ Use the following path, based on what you need next:
 - Understand platform behavior in CLI: [Testing with `dotnet test`](dotnet-test.md)
 - Find platform and extension CLI switches in one place: [MTP CLI options reference](cli-options.md)
 - Configure framework runners: [Run tests with MSTest](../mstest/running-tests/overview.md) or [MTP support in NUnit (NUnit runner)](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-nunit-runner-intro)
-- Host MTP in a WinUI 3 app: [Test WinUI 3 apps with MSTest and MTP](../mstest/running-tests/winui.md)
 - Add diagnostics, coverage, and reporting: [MTP features](features/overview.md)
 - Build your own extension: [MTP architecture](extending/overview.md), [Extension points](extending/extensions.md), and [Services](extending/services.md)
 - Build editor or IDE integration: [MTP server mode](extending/server-mode.md)

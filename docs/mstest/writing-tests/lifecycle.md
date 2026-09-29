@@ -292,7 +292,7 @@ public class TestLevelSetupExample
 The test method executes after setup completes. For `async` test methods, MSTest awaits the returned `Task` or `ValueTask`.
 
 > [!WARNING]
-> Asynchronous test methods don't have a [`SynchronizationContext`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.synchronizationcontext) by default. This doesn't apply to `UITestMethod` tests in UWP and WinUI, which run on the UI thread.
+> Asynchronous test methods don't have a [`SynchronizationContext`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.synchronizationcontext) by default.
 
 ### Cleanup phase
 

@@ -11,9 +11,6 @@
 | **Introduced in version**           | 4.4.0 (preview)                                    |
 | **Is there a code fix**             | Yes, for C# only                                   |
 
-> [!IMPORTANT]
-> `ResourceLockAttribute` is planned for MSTest 4.4 and is available only in preview builds until MSTest 4.4.0 is released.
-
 > [!NOTE]
 > This analyzer activates only when assembly parallelization is syntactically enabled, for example through `[assembly: Parallelize]` without a matching `[assembly: DoNotParallelize]`, or when a `.editorconfig` file sets `mstest_parallel_safety_mode = always`. The analyzer can't detect parallelization that's enabled only through `.runsettings` or MSBuild properties such as `MSTestParallelizeWorkers`. Set the `.editorconfig` option if you configure parallelization that way and still want this analyzer to run.
 

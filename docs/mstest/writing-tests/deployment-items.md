@@ -141,10 +141,6 @@ By default, MSTest creates a per-run deployment directory and copies items into 
 
 When deployment is disabled, `[DeploymentItem]` attributes have no effect, and the test runs in the build output directory itself. For more configuration options, see [Configure MSTest](../running-tests/configure.md).
 
-## Legacy mode and `.testsettings`
-
-When MSTest runs in legacy mode (a `.testsettings` file is used, or `RunSettings/MSTest/ForcedLegacyMode` is set to `true` in a `.runsettings` file), relative paths might be resolved against the solution root directory instead of the build output directory. Avoid legacy mode for new projects&mdash;the modern `.runsettings`-based configuration is the recommended approach.
-
 ## Best practices
 
 - **Prefer `CopyToOutputDirectory` over deep relative paths.** Don't reach into source folders with `..\..\` style paths&mdash;they tie your tests to a specific repository layout. Stage the files in the build output directory first.

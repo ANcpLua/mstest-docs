@@ -8,7 +8,7 @@ MSTest runs tests with [Microsoft.Testing.Platform (MTP)](../../testing-platform
 
 The MSTest runner is open source and builds on the [MTP](../../testing-platform/intro.md) library. You can find `Microsoft.Testing.Platform` code in the [microsoft/testfx](https://github.com/microsoft/testfx/tree/main/src/Platform/Microsoft.Testing.Platform) GitHub repository. The MSTest runner comes bundled with `MSTest in 3.2.0` or newer.
 
-With the .NET 10 SDK and later versions, select the dedicated MTP mode of `dotnet test` in `global.json`. Starting with .NET 11 Preview 6, you can override that selection for the current process with the `DOTNET_TEST_RUNNER` environment variable. For the supported inputs, SDK-version requirements, and MTP-specific options, see [`dotnet test` with MTP](../../testing-platform/dotnet-test-cli.md).
+With the .NET 10 SDK and later versions, select the dedicated MTP mode of `dotnet test` in `global.json`.
 
 ## Enable MTP in an MSTest project
 
@@ -43,13 +43,6 @@ Consider the following example project file:
   <PropertyGroup>
     <!-- Enable Microsoft.Testing.Platform, this is an opt-in feature -->
     <EnableMSTestRunner>true</EnableMSTestRunner>
-    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
-
-    <!--
-      Displays error on console in addition to the log file. Note that this feature comes with a performance impact.
-      For more information, visit https://learn.microsoft.com/dotnet/core/testing/unit-testing-with-dotnet-test#show-failure-per-test
-      -->
-    <TestingPlatformShowTestsFailure>true</TestingPlatformShowTestsFailure>
 
     <OutputType>Exe</OutputType>
 
@@ -74,9 +67,6 @@ Consider the following example project file:
 
 </Project>
 ```
-
-> [!TIP]
-> To ensure all test projects in your solution use the MSTest runner, set the `EnableMSTestRunner` and `TestingPlatformDotnetTestSupport` properties in *Directory.Build.props* file instead of individual project files.
 
 ## Configurations and filters
 
@@ -141,6 +131,5 @@ Contoso.MyTests.exe --filter "FullyQualifiedName~UnitTest1|TestCategory=Category
 - [Testing with `dotnet test`](../../testing-platform/dotnet-test.md)
 - [`dotnet test` with MTP](../../testing-platform/dotnet-test-cli.md)
 - [MTP CLI options reference](../../testing-platform/cli-options.md)
-- [Test WinUI 3 apps with MSTest and MTP](winui.md)
 - [Filter tests](filter.md)
 - [Order unit tests](../writing-tests/ordering.md)

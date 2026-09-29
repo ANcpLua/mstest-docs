@@ -17,9 +17,8 @@ Choose a workflow based on your goal:
 | Run or troubleshoot tests | Use the [`run-tests` skill](https://github.com/dotnet/skills/tree/main/plugins/dotnet-test/skills/run-tests) to execute tests or diagnose test execution without changing test code. |
 | Audit test quality | Use the [`test-quality-auditor` agent](https://github.com/dotnet/skills/blob/main/plugins/dotnet-test/agents/test-quality-auditor.agent.md) for a broad assessment, or invoke a focused skill from the [`dotnet-test` skills directory](https://github.com/dotnet/skills/tree/main/plugins/dotnet-test/skills) for assertions, coverage, test gaps, or test smells. |
 | Improve testability | Use the [`testability-migration` agent](https://github.com/dotnet/skills/blob/main/plugins/dotnet-test/agents/testability-migration.agent.md) to find static dependencies and introduce testable abstractions. |
-| Migrate a test framework or platform | Use the [`test-migration` agent](https://github.com/dotnet/skills/blob/main/plugins/dotnet-test-migration/agents/test-migration.agent.md) from the [`dotnet-test-migration` plugin](https://github.com/dotnet/skills/tree/main/plugins/dotnet-test-migration). The agent detects the current setup and selects the appropriate migration skill. |
 
-For installation steps and supported coding agents, see the [.NET Agent Skills repository](https://github.com/dotnet/skills#installation). Install `dotnet-test` alongside `dotnet-test-migration` because migration workflows reuse its platform detection and test verification skills.
+For installation steps and supported coding agents, see the [.NET Agent Skills repository](https://github.com/dotnet/skills#installation).
 
 ## Choose the packages
 

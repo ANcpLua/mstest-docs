@@ -177,7 +177,7 @@ This article gives a central entry point for MTP command-line options.
   Controls whether a run that executes no tests because every test was skipped is treated as a failure. Valid values are `allow-skipped` (default) and `strict`. With `allow-skipped`, an all-skipped run succeeds. With `strict`, it fails with exit code `8`. An explicit `--minimum-expected-tests` value supersedes this policy and uses exit code `9` when the minimum isn't met.
 
   > [!NOTE]
-  > This option is available in MTP starting with version 4.3.0. With `dotnet test`, pass the option after `--` to forward it to each test module. When you don't set a global minimum, the .NET 11 SDK determines the whole-run zero-tests verdict separately. For more information, see [Whole-run and per-module minimums](dotnet-test-cli.md#whole-run-and-per-module-minimums).
+  > This option is available in MTP starting with version 4.3.0. With `dotnet test`, pass the option after `--` to forward it to each test module.
 
 ## Extension options by scenario
 

@@ -45,13 +45,6 @@ An explicit `--minimum-expected-tests` value supersedes `--zero-tests-policy`. W
 
 To enable verbose logging and troubleshoot issues, see [Diagnostic logging](#diagnostic-logging).
 
-### Zero tests in a multi-module run
-
-When `dotnet test` runs several test modules, exit code `8` is a per-module signal, while the zero-tests verdict for the whole run is decided once from the aggregated results. A single empty module therefore doesn't fail the whole run, although the module keeps its `Exit code: 8` diagnostic in the output. When you don't set a global minimum, an all-skipped whole run is treated as a zero-test run regardless of the per-module `--zero-tests-policy` value. For more information, see [Whole-run and per-module minimums](dotnet-test-cli.md#whole-run-and-per-module-minimums).
-
-> [!NOTE]
-> This whole-run zero-tests verdict requires the .NET 11 SDK or a later version.
-
 ### Ignore specific exit codes
 
 MTP is designed to be strict by default but allows for configurability. As such, it's possible for users to decide which exit codes should be ignored (an exit code of `0` will be returned instead of the original exit code).
@@ -121,15 +114,6 @@ To resolve the conflict, override `RootNamespace` in your test project to a valu
 ```
 
 You can also clear `RootNamespace` entirely (`<RootNamespace />`), in which case the generated types are emitted into the global namespace.
-
-### Microsoft.Testing.Extensions.Fakes
-
-#### Fakes error Failed to resolve profiler path from COR_PROFILER_PATH and COR_PROFILER environment variables
-
-This error can occur if not all of the Fakes assemblies are present in the bin folder.
-
-- Ensure that the project either uses the [MSTest.SDK](../mstest/running-tests/sdk.md) or references [Microsoft.Testing.Extensions.Fakes](features/fakes.md).
-- For .NET Framework projects, avoid setting `<PlatformTarget>AnyCPU</PlatformTarget>` as this results in NuGet not copying all files to the bin folder.
 
 ### Unrecognized extension command-line option
 

@@ -19,7 +19,7 @@ MSTest also provides the following types to extend data-driven scenarios:
 - [`ITestDataSource`](#itestdatasource): An interface you can implement on a custom attribute to create fully custom data source attributes.
 
 > [!IMPORTANT]
-> Built-in combinatorial testing is planned for MSTest 4.4 and is available only in preview builds until MSTest 4.4.0 is released. For earlier MSTest versions, use the community-maintained [Combinatorial.MSTest](https://www.nuget.org/packages/Combinatorial.MSTest) package.
+> For earlier MSTest versions, use the community-maintained [Combinatorial.MSTest](https://www.nuget.org/packages/Combinatorial.MSTest) package.
 
 ## `DataRowAttribute`
 
@@ -169,7 +169,7 @@ public class IgnoreDataRowExample
 
 ## `CombinatorialDataAttribute`
 
-In MSTest 4.4 preview builds, the `CombinatorialData` attribute generates the Cartesian product of the values for each test method parameter. Use the types in the `Microsoft.VisualStudio.TestTools.UnitTesting.Combinatorial` namespace.
+In MSTest 4.4, the `CombinatorialData` attribute generates the Cartesian product of the values for each test method parameter. Use the types in the `Microsoft.VisualStudio.TestTools.UnitTesting.Combinatorial` namespace.
 
 Provide values for each parameter with one of the following options:
 

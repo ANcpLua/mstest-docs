@@ -112,7 +112,7 @@ Bootstrap-only options run before MTP loads configuration. Don't put `config-fil
 ### Passive command-line option defaults
 
 > [!IMPORTANT]
-> `commandLineOptionDefaults` is available in MTP 2.4 preview.
+> `commandLineOptionDefaults` is available in MTP 2.4.
 
 Use `commandLineOptionDefaults` to supply an argument only when an enabled feature requests that option and no higher-priority value exists. A passive default doesn't enable an option, register an extension, or activate a feature. Omit the leading `--` from each key.
 
@@ -173,25 +173,10 @@ The following example shows a *testconfig.json* file that configures platform op
 }
 ```
 
-### Migrating from .runsettings to testconfig.json
-
-If you're migrating from a *.runsettings* file, the following table maps common settings to their *testconfig.json* equivalents or alternatives:
-
-| .runsettings setting | testconfig.json equivalent | Notes |
-|---|---|---|
-| `RunConfiguration/ResultsDirectory` | `platformOptions.resultDirectory` | |
-| `RunConfiguration/MaxCpuCount` | No equivalent | Process-level parallelism is controlled by `dotnet test --max-parallel-test-modules` or MSBuild `/m` option. |
-| `MSTest/*` | `mstest.*` | See [Configure MSTest — testconfig.json](../mstest/running-tests/configure.md#testconfigjson). |
-| `xUnit/*` | `xUnit.*` | See [xUnit.net testconfig.json](https://xunit.net/docs/config-testconfig-json). |
-| `LoggerRunSettings/Loggers` | CLI options | Use the option from the installed report extension. For example, `--report-trx` requires `Microsoft.Testing.Extensions.TrxReport`. Starting with MTP 2.3.0, MTP can read CLI options from *testconfig.json*. See [Test reports](features/test-reports.md). |
-| `DataCollectionRunSettings` (blame) | CLI options | Use `--crashdump` from `Microsoft.Testing.Extensions.CrashDump` or `--hangdump` from `Microsoft.Testing.Extensions.HangDump`. Starting with MTP 2.3.0, MTP can read CLI options from *testconfig.json*. See [Crash and hang dumps](features/crash-hang-dumps.md). |
-| `DataCollectionRunSettings` (coverage) | CLI options | Use `--coverage` from `Microsoft.Testing.Extensions.CodeCoverage`. Starting with MTP 2.3.0, MTP can read CLI options from *testconfig.json*. See [Code coverage](features/code-coverage.md). |
-| `TestRunParameters` | `--test-parameter` CLI | Use `--test-parameter key=value` on the command line. |
-
 ## MSBuild configuration
 
 > [!IMPORTANT]
-> `TestingPlatformEnvironmentVariable` is available in MTP 2.4 preview.
+> `TestingPlatformEnvironmentVariable` is available in MTP 2.4.
 
 To set an environment variable on the test process that `InvokeTestingPlatform` launches, add a `TestingPlatformEnvironmentVariable` item:
 
@@ -238,14 +223,14 @@ The output directory of the diagnostic logging. If not specified, the file is ge
 The prefix for the log file name. By default, MTP uses `<asm>_<tfm>_<arch>` and appends a timestamp. The resulting file name is `<asm>_<tfm>_<arch>_<timestamp>.diag`. The variable matches the `--diagnostic-file-prefix` command-line option.
 
 > [!NOTE]
-> This environment variable name is available in MTP starting with version 2.3.0. The legacy `TESTINGPLATFORM_DIAGNOSTIC_OUTPUT_FILEPREFIX` environment variable is still honored for backward compatibility but is deprecated and might be removed in a future major version. When both variables are set, `TESTINGPLATFORM_DIAGNOSTIC_FILE_PREFIX` takes precedence.
+> This environment variable name is available in MTP starting with version 2.3.0. When both variables are set, `TESTINGPLATFORM_DIAGNOSTIC_FILE_PREFIX` takes precedence.
 
 ### `TESTINGPLATFORM_DIAGNOSTIC_SYNCHRONOUS_WRITE` environment variable
 
 Forces the built-in file logger to synchronously write logs. Useful for scenarios where you don't want to lose any log entries (if the process crashes). This does slow down the test execution. Matches the `--diagnostic-synchronous-write` command-line option.
 
 > [!NOTE]
-> This environment variable name is available in MTP starting with version 2.3.0. The legacy `TESTINGPLATFORM_DIAGNOSTIC_FILELOGGER_SYNCHRONOUSWRITE` environment variable is still honored for backward compatibility but is deprecated and might be removed in a future major version. When both variables are set, `TESTINGPLATFORM_DIAGNOSTIC_SYNCHRONOUS_WRITE` takes precedence.
+> This environment variable name is available in MTP starting with version 2.3.0. When both variables are set, `TESTINGPLATFORM_DIAGNOSTIC_SYNCHRONOUS_WRITE` takes precedence.
 
 ### `TESTINGPLATFORM_EXITCODE_IGNORE` environment variable
 
@@ -275,7 +260,7 @@ The variable has no effect on Windows, where named pipes don't use file-system p
 ### Deadline cancellation prototype
 
 > [!WARNING]
-> **EXPERIMENTAL/PROTOTYPE:** Deadline cancellation is a prototype in MTP 2.4 preview. Its variables and behavior can change or be removed.
+> **EXPERIMENTAL/PROTOTYPE:** Deadline cancellation is a prototype in MTP 2.4. Its variables and behavior can change or be removed.
 
 Set `TESTINGPLATFORM_DEADLINE` to the complete hard-cancel instant supplied by the deadline producer. Use an ISO 8601 UTC value. Don't subtract MTP's margins from the value.
 

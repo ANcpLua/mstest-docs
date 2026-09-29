@@ -11,9 +11,6 @@
 | **Introduced in version**           | 4.4.0 (preview)                                    |
 | **Is there a code fix**             | No                                                 |
 
-> [!IMPORTANT]
-> `ResourceLockAttribute` is planned for MSTest 4.4 and is available only in preview builds until MSTest 4.4.0 is released.
-
 ## Cause
 
 A `[ResourceLock]` attribute passes its resource key as a bare string literal instead of referencing a shared constant.

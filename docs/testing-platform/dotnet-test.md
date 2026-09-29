@@ -17,12 +17,8 @@ To enable this mode, add the following configuration to your `global.json` file:
 }
 ```
 
-Starting with .NET 11 Preview 6, you can instead set the `DOTNET_TEST_RUNNER` environment variable to `Microsoft.Testing.Platform`. A recognized environment variable value overrides `global.json` for the current process. For accepted values and precedence, see [Choose a test runner](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-test#choose-a-test-runner).
-
 > [!IMPORTANT]
 > The `dotnet test` experience for MTP is only supported in `Microsoft.Testing.Platform` version 1.7 and later.
-
-Since this mode is specifically designed for MTP, neither `TestingPlatformDotnetTestSupport` nor the additional `--` are required.
 
 > [!IMPORTANT]
 > This mode is only compatible with MTP version 1.7.0 and later.
@@ -35,19 +31,6 @@ Since this mode is specifically designed for MTP, neither `TestingPlatformDotnet
 >   <TestingPlatformCommandLineArguments>--minimum-expected-tests 10</TestingPlatformCommandLineArguments>
 > </PropertyGroup>
 > ```
-
-## Migrate to MTP mode of `dotnet test`
-
-1. Add `test` section to your `global.json` file, as shown above.
-1. Remove `TestingPlatformDotnetTestSupport` MSBuild property, as it's no longer required.
-1. Remove `TestingPlatformCaptureOutput` and `TestingPlatformShowTestsFailure` MSBuild properties, as they are no longer used by the new `dotnet test`.
-1. Treat the extra `--` as optional. For example, `dotnet test -- --report-trx` can become `dotnet test --report-trx`. Keep the separator to forward test application arguments unambiguously. Neither syntax installs the required `Microsoft.Testing.Extensions.TrxReport` extension.
-1. If passing a specific solution (or directory containing solution), for example, `dotnet test MySolution.sln`, this should become `dotnet test --solution MySolution.sln`.
-1. If passing a specific project (or directory containing project), for example, `dotnet test MyProject.csproj`, this should become `dotnet test --project MyProject.csproj`.
-1. If passing a specific dll, for example, `dotnet test path/to/UnitTests.dll`, this should become `dotnet test --test-modules path/to/UnitTests.dll`. Note that `--test-modules` also supports globbing.
-
-> [!TIP]
-> Even though `--` is no longer required in MTP mode, you can still use it to mark where test application arguments begin. The separator avoids a parser quirk where unrecognized arguments change meaning when interleaved with options that `dotnet test` understands. The separator also protects your scripts if `dotnet test` later starts recognizing one of those tokens. For more information, see [Forward arguments to the test application](dotnet-test-cli.md#forward-arguments-to-the-test-application).
 
 ## Solutions with mixed test frameworks or extensions
 

@@ -5,7 +5,7 @@ This article covers advanced configuration options for MSTest.Sdk. For basic set
 > [!IMPORTANT]
 > By default, MSTest.Sdk uses the [MSTest runner with MTP](overview.md), including with [dotnet test](../../testing-platform/dotnet-test.md). This requires modifying your CI and local CLI calls, and also impacts the available entries of the _.runsettings_.
 >
-> MSTest.Sdk sets `EnableMSTestRunner` and `TestingPlatformDotnetTestSupport` to true by default. For more information about dotnet test and its different modes, see [Testing with dotnet test](../../testing-platform/dotnet-test.md).
+> For more information about dotnet test and its different modes, see [Testing with dotnet test](../../testing-platform/dotnet-test.md).
 
 ## Test utility helper libraries
 
@@ -40,7 +40,6 @@ You can set the profile using the property `TestingExtensionsProfile` with one o
   Enables all extensions from the `Default` profile, plus the following extensions:
 
   * [Crash Dump](../../testing-platform/features/crash-hang-dumps.md#crash-dump)
-  * [Fakes](../../testing-platform/features/fakes.md) (MSTest.Sdk 3.7.0+)
   * [Hang Dump](../../testing-platform/features/crash-hang-dumps.md#hang-dump)
   * [Hot Reload](../../testing-platform/features/hot-reload.md#hot-reload)
   * [HTML Report](../../testing-platform/features/test-reports.md#html-reports)
@@ -68,7 +67,6 @@ Here's a full example, using the `None` profile:
 | ------------------------------------------------------------------------------------------------- | :---: | :----------------: | :-----------------: |
 | [Code Coverage](https://www.nuget.org/packages/Microsoft.Testing.Extensions.CodeCoverage)         |       | :heavy_check_mark: | :heavy_check_mark:  |
 | [Crash Dump](https://www.nuget.org/packages/Microsoft.Testing.Extensions.CrashDump)               |       |                    | :heavy_check_mark:  |
-| [Fakes](https://www.nuget.org/packages/Microsoft.Testing.Extensions.Fakes)                        |       |                    | :heavy_check_mark:¹ |
 | [Hang Dump](https://www.nuget.org/packages/Microsoft.Testing.Extensions.HangDump)                 |       |                    | :heavy_check_mark:  |
 | [Hot Reload](https://www.nuget.org/packages/Microsoft.Testing.Extensions.HotReload)               |       |                    | :heavy_check_mark:  |
 | [HTML Report](https://www.nuget.org/packages/Microsoft.Testing.Extensions.HtmlReport)             |       |                    | :heavy_check_mark:  |
@@ -77,7 +75,6 @@ Here's a full example, using the `None` profile:
 | [Trx](https://www.nuget.org/packages/Microsoft.Testing.Extensions.TrxReport)                      |       | :heavy_check_mark: | :heavy_check_mark:  |
 | [Azure DevOps Report](https://www.nuget.org/packages/Microsoft.Testing.Extensions.AzureDevOpsReport) |       | :heavy_check_mark:³ | :heavy_check_mark:² |
 
-¹ MSTest.Sdk 3.7.0+
 ² MSTest.Sdk 3.11.0+
 ³ MSTest.Sdk 4.3.0+
 
@@ -103,7 +100,7 @@ For a list of all available extensions, see [MTP features](../../testing-platfor
 Some MTP extensions remain opt-in and aren't included in the `Default` or `AllMicrosoft` profiles:
 
 - Starting with MSTest.Sdk 4.3, set `<EnableMicrosoftTestingExtensionsJUnitReport>true</EnableMicrosoftTestingExtensionsJUnitReport>`, then pass `--report-junit`.
-- Starting with the MSTest.Sdk 4.4 preview, set `<EnableMicrosoftTestingExtensionsCtrfReport>true</EnableMicrosoftTestingExtensionsCtrfReport>`, then pass `--report-ctrf`.
+- Starting with MSTest.Sdk 4.4, set `<EnableMicrosoftTestingExtensionsCtrfReport>true</EnableMicrosoftTestingExtensionsCtrfReport>`, then pass `--report-ctrf`.
 - To reference the OpenTelemetry extension, set `<EnableMicrosoftTestingExtensionsOpenTelemetry>true</EnableMicrosoftTestingExtensionsOpenTelemetry>`. Because the extension requires API configuration, register it in your custom entry point as described in [OpenTelemetry](../../testing-platform/features/open-telemetry.md).
 
 These extensions are available only with MTP.
@@ -174,59 +171,7 @@ By setting the property `EnablePlaywright` to `true` you can bring in all the de
 </Project>
 ```
 
-## Migrate to MSTest SDK
-
-Consider the following steps that are required to migrate to the MSTest SDK.
-
-### Update your project
-
-When migrating an existing MSTest test project to MSTest SDK, start by replacing the `Sdk="Microsoft.NET.Sdk"` entry at the top of your test project with `Sdk="MSTest.Sdk"`
-
-```diff
-- Sdk="Microsoft.NET.Sdk"
-+ Sdk="MSTest.Sdk"
-```
-
-Add the version to your `global.json`:
-
-```json
-{
-    "msbuild-sdks": {
-        "MSTest.Sdk": "4.4.1"
-    }
-}
-```
-
-You can then start simplifying your project.
-
-Remove default properties:
-
-```diff
-- <EnableMSTestRunner>true</EnableMSTestRunner>
-- <OutputType>Exe</OutputType>
-- <IsPackable>false</IsPackable>
-- <IsTestProject>true</IsTestProject>
-```
-
-Remove default package references:
-
-```diff
-- <PackageReference Include="MSTest"
-- <PackageReference Include="MSTest.TestFramework"
-- <PackageReference Include="MSTest.TestAdapter"
-- <PackageReference Include="MSTest.Analyzers"
-```
-
-Finally, based on the extensions profile you're using, you can also remove some of the `Microsoft.Testing.Extensions.*` packages.
-
-### Update your CI
-
-Once you've updated your projects, if you're using MTP (default) and if you rely on `dotnet test` to run your tests, you must update your CI configuration. For more information and to guide your understanding of all the required changes, see [dotnet test integration](../../testing-platform/dotnet-test.md).
-
 ## Reflection source generator
-
-> [!IMPORTANT]
-> The following MSTest 4.4 behavior is available only in preview builds until MSTest 4.4.0 is released.
 
 MSTest 4.3 introduced the reflection source generator in the independently versioned, experimental `MSTest.SourceGeneration` package. Starting with MSTest 4.4, the package graduates from experimental status and uses the MSTest version.
 

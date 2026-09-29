@@ -11,9 +11,6 @@
 | **Introduced in version**           | 4.4.0 (preview)                                    |
 | **Is there a code fix**             | No                                                 |
 
-> [!IMPORTANT]
-> This analyzer is planned for MSTest 4.4 and is available only in preview builds until MSTest 4.4.0 is released.
-
 ## Cause
 
 A discoverable test class inherits a public test method or lifecycle method from an assembly that references a different major version of MSTest.
@@ -69,5 +66,4 @@ For more information, see [How to suppress code analysis warnings](https://learn
 
 ## See also
 
-- [Migrate from MSTest v3 to v4](../migration/v3-to-v4.md)
 - [Test lifecycle](../writing-tests/lifecycle.md)

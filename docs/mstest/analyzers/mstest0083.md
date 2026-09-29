@@ -11,9 +11,6 @@
 | **Introduced in version**           | 4.4.0 (preview)                                    |
 | **Is there a code fix**             | Yes, for C# only                                   |
 
-> [!IMPORTANT]
-> This analyzer is planned for MSTest 4.4 and is available only in preview builds until MSTest 4.4.0 is released.
-
 ## Cause
 
 A test method first checks whether an executable exists and returns or calls `Assert.Inconclusive` when it doesn't, then calls `Process.Start` with the same executable path.

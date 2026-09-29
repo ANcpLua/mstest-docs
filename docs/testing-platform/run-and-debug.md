@@ -61,7 +61,7 @@ For more information on `dotnet exec`, see [dotnet exec](https://learn.microsoft
 
 ### Use `dotnet test`
 
-Starting with the .NET 10 SDK, [`dotnet test`](dotnet-test-cli.md) has a dedicated MTP mode. Select MTP through `global.json`, or use the `DOTNET_TEST_RUNNER` environment variable with .NET 11 Preview 6 or later. The dedicated mode supports projects, solutions, built test modules, and additional input types in newer SDK versions.
+Starting with the .NET 10 SDK, [`dotnet test`](dotnet-test-cli.md) has a dedicated MTP mode. Select MTP through `global.json`. The dedicated mode supports projects, solutions, built test modules, and additional input types in newer SDK versions.
 
 ```dotnetcli
 dotnet test --test-modules Contoso.MyTests.dll

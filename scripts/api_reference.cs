@@ -62,7 +62,7 @@ static class Api
 
     static readonly HashSet<string> ShownAttributes =
     [
-        "AttributeUsageAttribute", "ObsoleteAttribute", "ExperimentalAttribute", "FlagsAttribute", "DoesNotReturnAttribute",
+        "AttributeUsageAttribute", "ExperimentalAttribute", "FlagsAttribute", "DoesNotReturnAttribute",
         "CallerArgumentExpressionAttribute", "CallerMemberNameAttribute", "CallerFilePathAttribute", "CallerLineNumberAttribute",
         "NotNullAttribute", "NotNullWhenAttribute", "MaybeNullWhenAttribute", "DoesNotReturnIfAttribute", "StringSyntaxAttribute",
     ];
@@ -84,7 +84,7 @@ static class Api
     public static bool IsVisible(MethodBase? method) => method is not null && (method.IsPublic || method.IsFamily || method.IsFamilyOrAssembly);
 
     public static bool IsHidden(IEnumerable<CustomAttributeData> attributes) => attributes.Any(a =>
-        a.AttributeType.Name == "CompilerGeneratedAttribute"
+        a.AttributeType.Name is "CompilerGeneratedAttribute" or "ObsoleteAttribute"
         || (a.AttributeType.Name == "EditorBrowsableAttribute" && a.ConstructorArguments.Count == 1 && Convert.ToInt32(a.ConstructorArguments[0].Value) == 1));
 
     public static IEnumerable<T> Members<T>(Type type) where T : MemberInfo =>

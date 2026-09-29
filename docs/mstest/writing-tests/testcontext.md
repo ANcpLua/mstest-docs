@@ -94,9 +94,6 @@ The [`TestContext`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/TestC
 
 ### Per-test temporary directory
 
-> [!IMPORTANT]
-> `TestContext.TestTempDirectory` is planned for MSTest 4.4 and is available only in preview builds until MSTest 4.4.0 is released.
-
 Use `TestContext.TestTempDirectory` as private scratch space for a test. MSTest creates the directory only when you first access the property, and each test execution receives a unique directory. Each data row also receives its own directory, so parallel tests don't share paths.
 
 ```csharp
@@ -108,7 +105,7 @@ MSTest creates the directory under `TestResultsDirectory` when possible and fall
 
 When a passing test registers a file from the directory with `AddResultFile`, MSTest retains the directory until the host collects the attachment. Cleanup is best effort and doesn't change the test outcome.
 
-`TestTempDirectory` is available for .NET and .NET Framework targets, but not for UWP or WinUI targets. The property doesn't change the process current directory.
+The property doesn't change the process current directory.
 
 In MSTest 3.7 and later, the [`TestContext`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/TestContext.md) class also provides new properties helpful for `TestInitialize` and `TestCleanup` methods:
 
@@ -170,7 +167,7 @@ namespace YourNamespace
 
 You can use [`TestContext.Properties`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/TestContext.md) to store custom key-value pairs that can be accessed across different methods in the same test session.
 
-Starting with the MSTest 4.4 preview, the indexer consistently returns `null` when a custom key doesn't exist.
+Starting with MSTest 4.4, the indexer consistently returns `null` when a custom key doesn't exist.
 
 ```csharp
 TestContext.Properties["MyKey"] = "MyValue";

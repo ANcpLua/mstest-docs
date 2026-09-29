@@ -22,7 +22,7 @@ A file name can include a relative path that stays within the test results direc
 
 For example, `--report-trx-filename "{asm}_{tfm}_{arch}.trx"` reproduces the default TRX name.
 
-If a default or explicit TRX, HTML, or JUnit file name already exists for a test source, the extension warns and overwrites the file. Starting with the MTP 2.4 preview, CTRF uses the same behavior. To retain report history, include `{time}`.
+If a default or explicit TRX, HTML, or JUnit file name already exists for a test source, the extension warns and overwrites the file. Starting with MTP 2.4, CTRF uses the same behavior. To retain report history, include `{time}`.
 
 > [!NOTE]
 > Placeholder names are case-sensitive and use lowercase. Placeholder support for report file names is available in MTP starting with version 2.3.0.
@@ -55,7 +55,7 @@ builder.AddTrxReportProvider();
 > [!NOTE]
 > Available in MTP starting with version 2.3.0, TRX results stream to disk as the run progresses. If the test host crashes, the TRX file keeps the results collected before the crash.
 >
-> Starting with the MTP 2.4 preview, an MTP-generated TRX preserves MSTest `[WorkItem]` and `[GitHubWorkItem]` metadata.
+> Starting with MTP 2.4, an MTP-generated TRX preserves MSTest `[WorkItem]` and `[GitHubWorkItem]` metadata.
 
 ### Options
 
@@ -131,7 +131,7 @@ builder.AddCtrfReportProvider();
 | `--report-ctrf` | Generates the CTRF JSON report. |
 | `--report-ctrf-filename` | The name of the generated CTRF JSON report. The value must end with `.json`. The default is `<UserName>_<MachineName>_<assembly>_<tfm>_<timestamp>.ctrf.json`. To customize the name, see [Report file names](#report-file-names). Requires `--report-ctrf`. |
 
-Starting with the MTP 2.4 preview, CTRF preserves every result when multiple tests use the same UID. It also includes per-test and prior-attempt attachments and infers their MIME types from file names.
+Starting with MTP 2.4, CTRF preserves every result when multiple tests use the same UID. It also includes per-test and prior-attempt attachments and infers their MIME types from file names.
 
 For retried tests, CTRF correlates attempts only when the relationship is unambiguous. It then records earlier attempts in `retryAttempts`, sets `retries`, and marks a later successful result as `flaky: true`. Ambiguous same-UID results remain separate so the report doesn't associate diagnostics with the wrong test.
 
@@ -160,7 +160,7 @@ builder.TestHost.AddAzureDevOpsProvider();
 |---|---|---|
 | `--report-azdo` | 1.9.0 | Enables the Azure DevOps report generator. Errors and warnings are written to the output in a format that Azure DevOps understands. |
 | `--report-azdo-severity` | 1.9.0 | Severity to use for reported events. Valid values are `error` (default) and `warning`. |
-| `--report-azdo-groups` | 2.4.0 | Enables or disables per-assembly log groups. When enabled, each test assembly's output appears in a collapsible section of the Azure Pipelines log. Valid values are `on` and `off`. MTP 2.4.0 preview builds default to `on`; the stable MTP 2.4.0 release defaults to `off`. Requires `--report-azdo`. |
+| `--report-azdo-groups` | 2.4.0 | Enables or disables per-assembly log groups. When enabled, each test assembly's output appears in a collapsible section of the Azure Pipelines log. Valid values are `on` and `off`. The default is `off`. Requires `--report-azdo`. |
 | `--report-azdo-annotations` | 2.4.0 | Enables or disables annotations for failed and skipped tests. Valid values are `on` (default) and `off`. Requires `--report-azdo`. |
 | `--report-azdo-flaky-history` | 2.3.0 | Queries Azure DevOps test result history for the past N days (1-90) and annotates reported failures with flakiness context. Requires `--report-azdo`. |
 | `--report-azdo-demote-known-flaky` | 2.3.0 | Demotes failures that are flaky enough in the Azure DevOps history window (default threshold is 25%) from errors to warnings. Requires `--report-azdo` and `--report-azdo-flaky-history`. |
@@ -178,7 +178,7 @@ builder.TestHost.AddAzureDevOpsProvider();
 | `--publish-azdo-run-name` | 2.3.0 | Sets a custom Azure DevOps test run name for live test-result publishing. Requires `--publish-azdo-test-results`. |
 
 > [!WARNING]
-> Don't enable groups when multiple test assemblies run in parallel. Azure DevOps `##[group]` and `##[endgroup]` formatting commands are sequential and anonymous. Concurrent assembly output can interleave, cause incorrect group nesting, and put lines under the wrong assembly. If you use an MTP 2.4.0 preview build, pass `--report-azdo-groups off` to disable groups. The stable MTP 2.4.0 release disables groups by default. Pass `--report-azdo-groups on` only for a single assembly or serialized assembly execution.
+> Don't enable groups when multiple test assemblies run in parallel. Azure DevOps `##[group]` and `##[endgroup]` formatting commands are sequential and anonymous. Concurrent assembly output can interleave, cause incorrect group nesting, and put lines under the wrong assembly. Groups are disabled by default. Pass `--report-azdo-groups on` only for a single assembly or serialized assembly execution.
 
 > [!NOTE]
 > The **MTP version** column lists the first MTP version that contains each option. The Azure DevOps extension itself became stable in MTP 1.9.0 with `--report-azdo` and `--report-azdo-severity`; the remaining options were added in MTP 2.3.0 or 2.4.0.
@@ -192,7 +192,7 @@ The extension automatically detects that it runs in a continuous integration (CI
 
 Starting with MTP 2.4.0, Azure DevOps Markdown summaries aggregate results across every test module in a `dotnet test` invocation. When you also enable code coverage, the summary includes covered and total counts, percentages, threshold results, and an indicator when coverage data is partial.
 
-In the MTP 2.4 preview, live publishing automatically uploads file attachments for unsuccessful results to Azure DevOps test results. Unsuccessful outcomes include failed, errored, timed-out, and canceled results.
+In MTP 2.4, live publishing automatically uploads file attachments for unsuccessful results to Azure DevOps test results. Unsuccessful outcomes include failed, errored, timed-out, and canceled results.
 
 When a result supplies standard output or standard error, the extension can attach up to 256 KiB of each inline stream. Each file-backed attachment has a 16-MiB limit.
 

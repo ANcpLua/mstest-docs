@@ -32,7 +32,6 @@ Use the following path based on your goal:
 - Need to load extensions that aren't compile-time references: [Dynamic extension loading](../extending/extensions.md#load-extensions-dynamically) (built-in, opt-in)
 - Need to retry failed tests: [Retry](retry.md#retry) (extension)
 - Need hot reload support: [Hot Reload](hot-reload.md) (extension)
-- Need Microsoft Fakes support: [Microsoft Fakes](fakes.md) (extension)
 - Need OpenTelemetry traces and metrics: [OpenTelemetry](open-telemetry.md) (extension)
 - Need to supply AI chat clients to a test framework or extension: [AI integrations](ai.md) (extension, experimental)
 - Telemetry data collection and opt-out: [Telemetry](telemetry.md) (extension)
@@ -84,10 +83,6 @@ Retry failed tests with configurable policies.
 **[Hot Reload](hot-reload.md)**
 
 Run tests with hot reload support for rapid iteration.
-
-**[Microsoft Fakes](fakes.md)**
-
-Run tests that use Microsoft Fakes for stubs and shims.
 
 **[Telemetry](telemetry.md)**
 

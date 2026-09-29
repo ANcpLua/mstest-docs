@@ -42,12 +42,9 @@ PAGES = {
     "testing/unit-testing-mstest-writing-tests-deployment-items.md": "mstest/writing-tests/deployment-items.md",
     "testing/order-unit-tests.md": "mstest/writing-tests/ordering.md",
     "testing/unit-testing-mstest-running-tests.md": "mstest/running-tests/overview.md",
-    "testing/unit-testing-mstest-winui.md": "mstest/running-tests/winui.md",
     "testing/unit-testing-mstest-configure.md": "mstest/running-tests/configure.md",
     "testing/unit-testing-mstest-sdk.md": "mstest/running-tests/sdk.md",
     "testing/selective-unit-tests.md": "mstest/running-tests/filter.md",
-    "testing/unit-testing-mstest-migration-from-v1-to-v3.md": "mstest/migration/v1-to-v3.md",
-    "testing/unit-testing-mstest-migration-v3-v4.md": "mstest/migration/v3-to-v4.md",
     "testing/microsoft-testing-platform-intro.md": "testing-platform/intro.md",
     "testing/microsoft-testing-platform-run-and-debug.md": "testing-platform/run-and-debug.md",
     "testing/microsoft-testing-platform-cli-options.md": "testing-platform/cli-options.md",
@@ -67,9 +64,7 @@ PAGES = {
     "testing/microsoft-testing-platform-ai.md": "testing-platform/features/ai.md",
     "testing/microsoft-testing-platform-retry.md": "testing-platform/features/retry.md",
     "testing/microsoft-testing-platform-hot-reload.md": "testing-platform/features/hot-reload.md",
-    "testing/microsoft-testing-platform-fakes.md": "testing-platform/features/fakes.md",
     "testing/microsoft-testing-platform-telemetry.md": "testing-platform/features/telemetry.md",
-    "testing/microsoft-testing-platform-migration-from-v1-to-v2.md": "testing-platform/migration/v1-to-v2.md",
     "testing/microsoft-testing-platform-architecture.md": "testing-platform/extending/overview.md",
     "testing/microsoft-testing-platform-architecture-test-framework.md": "testing-platform/extending/test-framework.md",
     "testing/microsoft-testing-platform-architecture-extensions.md": "testing-platform/extending/extensions.md",
@@ -78,8 +73,8 @@ PAGES = {
     "testing/microsoft-testing-platform-server-mode.md": "testing-platform/extending/server-mode.md",
 }
 ANALYZERS = ("testing/mstest-analyzers", "mstest/analyzers")
-# MSTest and platform pages that are about another platform or the legacy runner.
-LEFT_OUT = re.compile(r"bridge|migrating-|migration-from-tmi")
+# MSTest and platform pages left out: another platform, migration from older versions, Windows-only tooling.
+LEFT_OUT = re.compile(r"bridge|migrat|winui|fakes")
 PIVOT = "mstest"
 
 # Package -> assemblies inside the package, `{tfm}` being the best match for the TFM in VERSION.
@@ -89,7 +84,20 @@ API = {
 }
 API_NAMESPACES = ("Microsoft.VisualStudio.TestTools.UnitTesting", "Microsoft.Testing.Platform")
 
-BANNED = re.compile(r"vstest|Microsoft\.NET\.Test\.Sdk|testcasefilter|test-platforms-overview", re.IGNORECASE)
+BANNED = re.compile(
+    r"vstest|Microsoft\.NET\.Test\.Sdk|testcasefilter|test-platforms-overview"  # another platform
+    r"|Migrate from (?:MSTest|Microsoft\.Testing\.Platform|MTP)|migration guides|migration-from-v1|migration-v3-v4|Migrate to MTP mode|Migrate to MSTest SDK"
+    r"|Migrating from \.runsettings|test-migration|TestingPlatform(?:DotnetTestSupport|ShowTestsFailure|CaptureOutput)|ForcedLegacyMode|\.testsettings"  # older versions
+    r"|Deprecated in MTP|but is deprecated|No longer supported starting from MSTest v4"
+    r"|\.NET 1[12]\b|preview builds?|under development"  # newer than the pins, or no longer a preview
+    r"|winui|Fakes",  # Windows-only tooling
+    re.IGNORECASE,
+)
+# An option of `dotnet test` that needs a newer SDK than the pinned one goes as a whole.
+NEWER_SDK = re.compile(r"^\s+(?:Available (?:in MTP mode )?starting with|Starting with) \.NET 1[12]|Starting with \.NET 11 RC 1 and MTP", re.MULTILINE)
+# What follows such a sentence in its paragraph builds on it and goes along.
+NEWER = re.compile(r"\.NET 1[12]\b")
+PREVIEW = re.compile(r"(?:\b[Tt]he )?\b((?:MSTest(?:\.Sdk)?|MTP) \d+\.\d+(?:\.\d+)?)( and (?:MSTest|MTP) \d+\.\d+)? previews?\b(?: builds(?=,))?(?! build)")
 # Passages reworded before the removal, so that what they say about MTP survives: page -> [(pattern, replacement)].
 PATCHES = {
     "mstest/intro.md": [
@@ -103,8 +111,24 @@ PATCHES = {
         (r"^## VSTest vs MTP$", "## MSTest runner"),
         (r"MSTest supports running tests with both VSTest and (\[Microsoft\.Testing\.Platform \(MTP\)\]\([^)]*\))\.", r"MSTest runs tests with \1."),
         (r", such as `vstest\.console` or `dotnet test`, needed", " needed"),
+        (r"\n    <!--\n      Displays error on console.*?-->\n", "\n"),
+    ],
+    "mstest/writing-tests/overview.md": [
+        (r", `UITestMethod`", ""),
+    ],
+    "mstest/writing-tests/controlling-execution.md": [
+        (r"### `UITestMethodAttribute`.*?(?=## Parallelization attributes)", ""),
+    ],
+    "testing-platform/troubleshooting.md": [
+        (r"### Zero tests in a multi-module run.*?(?=### Ignore specific exit codes)", ""),
+    ],
+    "testing-platform/dotnet-test-cli.md": [
+        (r"- \*\*`--artifacts-path <ARTIFACTS_DIR>`\*\*.*?(?=- \*\*`-c\|--configuration)", ""),
+        (r"^ *\[--artifacts-path <ARTIFACTS_DIR>\]\n", ""),
+        (r"--list-tests \[text\|json\]", "--list-tests"),
     ],
     "mstest/running-tests/sdk.md": [
+        (r"^¹ MSTest\.Sdk 3\.7\.0\+\n", ""),
         (r"If you're using the VSTest mode of `dotnet test`.*?```diff.*?```\n", ""),
     ],
     "mstest/analyzers/mstest0040.md": [
@@ -123,13 +147,12 @@ PATCHES = {
     "testing-platform/features/code-coverage.md": [
         (r", while it used to be `true` in VSTest", ""),
     ],
-    "testing-platform/migration/v1-to-v2.md": [
-        (
-            r"### Compatibility with VSTest-based `dotnet test`.*?(?=To opt-in the MTP-based implementation)",
-            "### `dotnet test` requires the MTP mode\n\nRunning MTP test projects with .NET 10 SDK now requires opting-in to the MTP-based `dotnet test`. "
-            "The `TestingPlatformDotnetTestSupport` MSBuild property from MTP v1 no longer enables running them.\n\n",
-        ),
-        (r"Attempting to run the VSTest-based.*?mtp-error>\n", ""),
+    "testing-platform/run-and-debug.md": [
+        (r", or use the `DOTNET_TEST_RUNNER` environment variable with \.NET 11 Preview 6 or later", ""),
+    ],
+    "testing-platform/features/test-reports.md": [
+        (r" MTP 2\.4\.0 preview builds default to `on`; the stable MTP 2\.4\.0 release defaults to `off`\.", " The default is `off`."),
+        (r" If you use an MTP 2\.4\.0 preview build, pass `--report-azdo-groups off` to disable groups\. The stable MTP 2\.4\.0 release disables groups by default\.", " Groups are disabled by default."),
     ],
 }
 TAB = re.compile(r"^(#+) \[(.*)\]\(#tab/[^)]*\)\s*$", re.MULTILINE)
@@ -289,11 +312,14 @@ class Guide:
         body = self.expand(body, self.source)
         if TAB.search(body):
             body = re.sub(r"^---\s*$", "", TAB.sub(r"\1 \2", body), flags=re.MULTILINE)
+        body, dropped = drop_items(body, NEWER_SDK)
+        synopsis = {f"[{option}]" for option in dropped} | {f"[<{option}>]" for option in dropped}
+        body = "\n".join(line for line in body.split("\n") if line.strip() not in synopsis)
         for pattern, replacement in PATCHES.get(self.target, []):
             body, count = re.subn(pattern, replacement, body, flags=re.DOTALL | re.MULTILINE)
             if count == 0:
                 sys.exit(f"patch no longer applies to {self.target}: {pattern[:60]}")
-        return meta, body
+        return meta, outside_code(body, lambda text: PREVIEW.sub(r"\1\2", text))
 
     def expand(self, body, file):
         body = keep_pivot(body)
@@ -368,6 +394,26 @@ class Guide:
         return label, f"{LEARN}/dotnet/api/{name.lower().replace('`', '-')}{view}"
 
 
+def drop_items(text, pattern):
+    """`text` without the top-level list items, continuation lines included, that match `pattern`; and what their first lines name."""
+    out, item, names = [], None, []
+    for line in text.split("\n") + ["#"]:
+        if item is not None and (not line.strip() or line.startswith(" ")):
+            item.append(line)
+            continue
+        if item is not None:
+            kept = pattern.search("\n".join(item)) is None
+            removed.extend([] if kept else ["\n".join(item)])
+            names += [] if kept else re.findall(r"`([^`]+)`", item[0])
+            out += item if kept else []
+            item = None
+        if re.match(r"[-*] ", line):
+            item = [line]
+        else:
+            out.append(line)
+    return "\n".join(out[:-1]), names
+
+
 def page_for(key):
     if key is None:
         return None
@@ -397,6 +443,11 @@ def sentences(text):
     if not BANNED.search(text):
         return text, False
     parts = SENTENCE.split(text)
+    newer = next((index for index, part in enumerate(parts) if NEWER.search(part)), len(parts))
+    removed.extend(parts[newer:])
+    parts = parts[:newer]
+    if not parts:
+        return "", False
     kept = [part for part in parts if not BANNED.search(part)]
     removed.extend(part for part in parts if BANNED.search(part))
     return " ".join(kept), bool(BANNED.search(parts[-1])) and parts[-1].rstrip().endswith(":")
@@ -613,12 +664,13 @@ def write_claude_md(rows, pins, commit):
         "- Find the topic below, open **one** file, read it. Don't load the whole folder.",
         "- Paths are relative to this folder. `grep -ril <term> docs/` when the index doesn't name it.",
         "- `docs/mstest/` and `docs/testing-platform/` are the guides, `docs/api/` is the API reference of exactly the pinned packages.",
-        "- The guides describe the current release and name the version a feature arrived in; the API reference is proof of what the pinned version has.",
+        "- The guides name the version a feature arrived in; the API reference is proof of what the pinned version has.",
+        "- Left out on purpose: other test platforms, migration from older versions, obsolete API, what needs a newer .NET SDK than the pinned one, WinUI and Microsoft Fakes.",
         "",
         "## Sources",
         "",
         f"- Guides: [dotnet/docs](https://github.com/dotnet/docs/tree/{commit}/docs/core/testing) (branch `{SOURCE_BRANCH}`, commit `{commit[:7]}`), © Microsoft, [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).",
-        "  Changed for this copy: includes and snippets are inlined, links point to local files or learn.microsoft.com, package versions in examples follow the pins above, and everything about other test platforms is removed.",
+        "  Changed for this copy: includes and snippets are inlined, links point to local files or learn.microsoft.com, package versions in examples follow the pins above, preview notes for the pinned versions are reworded as released, and what the list above names is removed.",
         "- API reference: generated from the assemblies and XML documentation of the NuGet packages "
         + " and ".join(f"`{package}` {pins[pin]}" for package, (pin, _) in API.items())
         + " ([microsoft/testfx](https://github.com/microsoft/testfx), MIT).",

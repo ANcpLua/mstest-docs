@@ -27,22 +27,6 @@ Creates a builder asynchronously.
 
 **Returns:** The task representing the asynchronous operation.
 
-### CreateServerModeBuilderAsync
-
-```csharp
-[Obsolete("This method is obsolete. Use CreateBuilderAsync instead.", DiagnosticId = "MTP0002", UrlFormat = "https://aka.ms/testingplatform/diagnostics#{0}")]
-public static Task<ITestApplicationBuilder> CreateServerModeBuilderAsync(string[] args, TestApplicationOptions? testApplicationOptions = null)
-```
-
-Creates a server mode builder asynchronously.
-
-**Parameters:**
-
-- `args`: The command line arguments.
-- `testApplicationOptions`: The test application options.
-
-**Returns:** The task representing the asynchronous operation.
-
 ### Dispose
 
 ```csharp

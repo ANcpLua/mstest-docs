@@ -549,23 +549,6 @@ Tests whether the specified collection does not contain the specified element an
 
 - `AssertFailedException`: `collection` is null, or `collection` contains element `element`.
 
-### Equals
-
-```csharp
-[Obsolete("CollectionAssert.Equals should not be used for Assertions. Please use CollectionAssert.AreEqual & overloads instead.", true, DiagnosticId = "MSTEST0104", UrlFormat = "https://aka.ms/mstest/diagnostics#{0}")]
-[DoesNotReturn]
-public static bool Equals(object? objA, object? objB)
-```
-
-Static equals overloads are used for comparing instances of two types for equality. This method should **not** be used for comparison of two instances for equality. Please use CollectionAssert.AreEqual and associated overloads in your unit tests.
-
-**Parameters:**
-
-- `objA`: Object A.
-- `objB`: Object B.
-
-**Returns:** Never returns.
-
 ### IsNotSubsetOf
 
 ```csharp
@@ -637,20 +620,3 @@ Tests whether one collection is a subset of another collection and throws an exc
 **Exceptions:**
 
 - `AssertFailedException`: `subset` is null, or `superset` is null, or `subset` contains at least one element not contained in `superset`.
-
-### ReferenceEquals
-
-```csharp
-[Obsolete("CollectionAssert.ReferenceEquals should not be used for Assertions. Please use CollectionAssert methods or Assert.AreSame & overloads instead.", true, DiagnosticId = "MSTEST0105", UrlFormat = "https://aka.ms/mstest/diagnostics#{0}")]
-[DoesNotReturn]
-public static bool ReferenceEquals(object? objA, object? objB)
-```
-
-Static ReferenceEquals overloads are used for comparing instances of two types for reference equality. This method should **not** be used for comparison of two instances for reference equality. Please use CollectionAssert methods or Assert.AreSame and associated overloads in your unit tests.
-
-**Parameters:**
-
-- `objA`: Object A.
-- `objB`: Object B.
-
-**Returns:** Never returns.

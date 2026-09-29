@@ -187,7 +187,7 @@ public interface ITestHostExtension : IExtension
 ```
 
 > [!IMPORTANT]
-> In MTP 2.0.0, both methods changed to take a single `ITestSessionContext` parameter that exposes the `SessionUid` and the `CancellationToken`. In MTP 1.x, each method took a separate `SessionUid` and `CancellationToken` argument. For more information, see [Migrate from Microsoft.Testing.Platform (MTP) v1 to v2](../migration/v1-to-v2.md#api-signature-changes).
+> In MTP 2.0.0, both methods changed to take a single `ITestSessionContext` parameter that exposes the `SessionUid` and the `CancellationToken`. In MTP 1.x, each method took a separate `SessionUid` and `CancellationToken` argument.
 
 The `ITestSessionLifetimeHandler` is a type of `ITestHostExtension`, which serves as a base for all *test host* extensions. Like all other extension points, it also inherits from [IExtension](test-framework.md#the-iextension-interface). Therefore, like any other extension, you can choose to enable or disable it using the `IExtension.IsEnabledAsync` API.
 
@@ -204,7 +204,7 @@ If your extension requires intensive initialization and you need to use the asyn
 ### The `ITestApplicationLifecycleCallbacks` extensions
 
 > [!IMPORTANT]
-> `ITestApplicationLifecycleCallbacks` was removed in MTP 2.0.0. Use `ITestHostApplicationLifetime` instead. For more information, see [Migrate from Microsoft.Testing.Platform (MTP) v1 to v2](../migration/v1-to-v2.md#removed-obsolete-types).
+> `ITestApplicationLifecycleCallbacks` was removed in MTP 2.0.0. Use `ITestHostApplicationLifetime` instead.
 
 The `ITestHostApplicationLifetime` interface lets an *in-process* extension run code at the start and end of the *test host*.
 
@@ -295,7 +295,7 @@ public interface IData
 ```
 
 > [!IMPORTANT]
-> In MTP 2.0.0, `IDataConsumer` moved to the `Microsoft.Testing.Platform.Extensions` namespace and now extends [`IExtension`](test-framework.md#the-iextension-interface) directly. In MTP 1.x, it extended `ITestHostExtension`. You still register it with `builder.TestHost.AddDataConsumer(...)`. For more information, see [Migrate from Microsoft.Testing.Platform (MTP) v1 to v2](../migration/v1-to-v2.md#api-signature-changes).
+> In MTP 2.0.0, `IDataConsumer` moved to the `Microsoft.Testing.Platform.Extensions` namespace and now extends [`IExtension`](test-framework.md#the-iextension-interface) directly. In MTP 1.x, it extended `ITestHostExtension`. You still register it with `builder.TestHost.AddDataConsumer(...)`.
 
 The `IDataConsumer` inherits from [IExtension](test-framework.md#the-iextension-interface). Therefore, like any other extension, you can choose to enable or disable it using the `IExtension.IsEnabledAsync` API.
 
@@ -438,7 +438,7 @@ await messageBus.PublishAsync(
 ```
 
 > [!IMPORTANT]
-> `TestNodeFileArtifact` is obsolete and was removed in MTP 2.0.0. To attach test-level files, use `FileArtifactProperty` on the `TestNode`. For more information, see [Migrate from Microsoft.Testing.Platform (MTP) v1 to v2](../migration/v1-to-v2.md#removed-obsolete-types).
+> `TestNodeFileArtifact` is obsolete and was removed in MTP 2.0.0. To attach test-level files, use `FileArtifactProperty` on the `TestNode`.
 
 > [!NOTE]
 > MTP 2.4.0 (unreleased as of August 2026) adds an experimental `kind` constructor overload and `Kind` property to `FileArtifact` and `SessionFileArtifact` (requires the `TPEXP` diagnostic to be suppressed). `Kind` is a producer-asserted, reverse-DNS identifier of the artifact *format* (for example, `microsoft.testing.trx`, `microsoft.testing.junit`, `microsoft.testing.ctrf`, or `microsoft.testing.html`) that post-processing uses to group artifacts of the same format. Leave it `null` or omit it when the producer doesn't declare a known kind.

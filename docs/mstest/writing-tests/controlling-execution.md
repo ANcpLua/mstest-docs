@@ -78,28 +78,6 @@ public class UIComponentTests
 > [!TIP]
 > Use `UseSTASynchronizationContext = true` when testing Windows Forms or WPF components that perform async operations and expect their continuations to run on the same thread.
 
-### `UITestMethodAttribute`
-
-The `UITestMethod` attribute schedules test execution on the UI thread. This attribute is designed for testing UWP and WinUI applications that require UI thread access.
-
-```csharp
-[TestClass]
-public class WinUITests
-{
-    [UITestMethod]
-    public void TestUIComponent()
-    {
-        // This test runs on the UI thread
-        var button = new Button();
-        button.Content = "Click me";
-        Assert.IsNotNull(button.Content);
-    }
-}
-```
-
-> [!NOTE]
-> This attribute requires the appropriate MSTest adapter for UWP or WinUI platforms. For more information, see the [platform support](../intro.md#supported-platforms) section.
-
 ## Parallelization attributes
 
 Parallelization attributes control whether and how tests run concurrently, improving test execution time.
@@ -205,9 +183,6 @@ public class MixedTests
 
 ### `ResourceLockAttribute`
 
-> [!IMPORTANT]
-> `ResourceLockAttribute` is planned for MSTest 4.4 and is available only in preview builds until MSTest 4.4.0 is released.
-
 Use `[ResourceLock]` to serialize only tests that access the same named resource. Unlike `[DoNotParallelize]`, a resource lock doesn't block tests that use unrelated resources. The default `ReadWrite` mode is exclusive, while multiple tests that request `ResourceAccessMode.Read` for the same resource can run together.
 
 ```csharp
@@ -232,9 +207,6 @@ If a test also uses `[DoNotParallelize]`, `[DoNotParallelize]` takes precedence 
 > MSTest 4.4 adds parallel-safety analyzers [MSTEST0073](../analyzers/mstest0073.md) through [MSTEST0077](../analyzers/mstest0077.md) to help you declare stable lock keys and protect shared process state.
 
 ## Test dependencies
-
-> [!IMPORTANT]
-> Test dependencies are planned for MSTest 4.4 and are available only in preview builds until MSTest 4.4.0 is released.
 
 Use `[DependsOn]` for integration or end-to-end tests that must run after other tests. Dependencies form a directed acyclic graph, so independent branches can still run in parallel.
 
@@ -446,7 +418,7 @@ Starting with MSTest 3.8, create custom retry logic by inheriting from [`RetryBa
 > [!IMPORTANT]
 > The `RetryBaseAttribute.ExecuteAsync` API, and its `RetryContext` and `RetryResult` types, are experimental. Using them produces the `MSTESTEXP` diagnostic, which you must acknowledge before you use the API.
 
-Starting with the MSTest 4.4 preview, `RetryResult.AllResults` exposes the result arrays from every attempt in the order they were added. MSTest retries only when an attempt contains a failed or timed-out result. An inconclusive result by itself stops the retry sequence.
+Starting with MSTest 4.4, `RetryResult.AllResults` exposes the result arrays from every attempt in the order they were added. MSTest retries only when an attempt contains a failed or timed-out result. An inconclusive result by itself stops the retry sequence.
 
 Process-level `--retry-failed-tests` and an MSTest retry attribute apply at different levels. Their effects are multiplicative because each process-level attempt can run the attribute's complete retry sequence.
 

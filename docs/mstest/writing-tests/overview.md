@@ -120,7 +120,7 @@ MSTest documentation is organized by topic:
 | Test identification | `TestClass`, `TestMethod`, `DiscoverInternals` | This page |
 | Data-driven | `DataRow`, `CombinatorialData`, `CombinatorialValues`, `CombinatorialRange`, `CombinatorialRandomData`, `DynamicData`, `TestDataRow` | [Data-driven testing](data-driven.md) |
 | Lifecycle | `AssemblyInitialize`, `ClassInitialize`, `TestInitialize`, and cleanup counterparts | [Test lifecycle](lifecycle.md) |
-| Threading | `STATestClass`, `STATestMethod`, `UITestMethod` | [Execution control](controlling-execution.md) |
+| Threading | `STATestClass`, `STATestMethod` | [Execution control](controlling-execution.md) |
 | Parallelization | `Parallelize`, `DoNotParallelize` | [Execution control](controlling-execution.md) |
 | Timeout/Retry | `Timeout`, `Retry` | [Execution control](controlling-execution.md) |
 | Conditional | `Ignore`, `OSCondition`, `CICondition` | [Execution control](controlling-execution.md) |

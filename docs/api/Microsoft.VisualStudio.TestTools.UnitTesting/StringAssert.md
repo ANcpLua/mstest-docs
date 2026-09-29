@@ -249,23 +249,6 @@ Tests whether the specified string ends with the specified substring and throws 
 
 - `AssertFailedException`: `value` is null, or `substring` is null, or `value` does not end with `substring`.
 
-### Equals
-
-```csharp
-[Obsolete("StringAssert.Equals should not be used for Assertions. Please use StringAssert methods or Assert.AreEqual & overloads instead.", true, DiagnosticId = "MSTEST0102", UrlFormat = "https://aka.ms/mstest/diagnostics#{0}")]
-[DoesNotReturn]
-public static bool Equals(object? objA, object? objB)
-```
-
-Static equals overloads are used for comparing instances of two types for equality. This method should **not** be used for comparison of two instances for equality. Please use StringAssert methods or Assert.AreEqual and associated overloads in your unit tests.
-
-**Parameters:**
-
-- `objA`: Object A.
-- `objB`: Object B.
-
-**Returns:** Never returns.
-
 ### Matches
 
 ```csharp
@@ -301,23 +284,6 @@ Tests whether the specified string matches a regular expression and throws an ex
 **Exceptions:**
 
 - `AssertFailedException`: `value` is null, or `pattern` is null, or `value` does not match `pattern`.
-
-### ReferenceEquals
-
-```csharp
-[Obsolete("StringAssert.ReferenceEquals should not be used for Assertions. Please use StringAssert methods or Assert.AreSame & overloads instead.", true, DiagnosticId = "MSTEST0103", UrlFormat = "https://aka.ms/mstest/diagnostics#{0}")]
-[DoesNotReturn]
-public static bool ReferenceEquals(object? objA, object? objB)
-```
-
-Static ReferenceEquals overloads are used for comparing instances of two types for reference equality. This method should **not** be used for comparison of two instances for reference equality. Please use StringAssert methods or Assert.AreSame and associated overloads in your unit tests.
-
-**Parameters:**
-
-- `objA`: Object A.
-- `objB`: Object B.
-
-**Returns:** Never returns.
 
 ### StartsWith
 

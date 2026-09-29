@@ -142,16 +142,13 @@ MSTest 4.3 also adds:
 - Complete exception details, including stack traces and inner exceptions, in `Assert.Throws*` failure messages.
 - Assertion failure stacks that hide MSTest implementation frames and render built-in numeric values at full precision.
 
-> [!IMPORTANT]
-> The following assertion overloads are planned for MSTest 4.4 and are available only in preview builds until MSTest 4.4.0 is released.
-
 MSTest 4.4 adds span and memory overloads to `Assert.IsEmpty`, `Assert.IsNotEmpty`, and the remaining collection APIs. The overloads accept [`Span<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.span-1), [`ReadOnlySpan<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.readonlyspan-1), [`Memory<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.memory-1), and [`ReadOnlyMemory<T>`](https://learn.microsoft.com/en-us/dotnet/api/system.readonlymemory-1):
 
 - All-item checks: `AreAllDistinct`, `AreAllNotNull`, and `AreAllOfType`.
 - Comparisons: `AreEquivalent`, `AreNotEquivalent`, `AreSequenceEqual`, and `AreNotSequenceEqual`.
 - Containment: `Contains`, `ContainsAll`, `ContainsSingle`, `DoesNotContain`, and `DoesNotContainAll`.
 
-With the MSTest 4.4 and MTP 2.4 previews, capable IDEs and reporters receive assertion expected and actual values as separate structured properties. Consumers don't need to parse these values from the failure message.
+With MSTest 4.4 and MTP 2.4, capable IDEs and reporters receive assertion expected and actual values as separate structured properties. Consumers don't need to parse these values from the failure message.
 
 `Assert.AddValueFormatter` returns an [`IDisposable`](https://learn.microsoft.com/en-us/dotnet/api/system.idisposable) registration. Dispose the registration to remove the formatter. The formatter applies only to the current asynchronous context, so parallel tests can use different formatters without changing each other's output. Because the API is experimental in MSTest 4.3, acknowledge or suppress the `MSTESTEXP` diagnostic before you use it.
 

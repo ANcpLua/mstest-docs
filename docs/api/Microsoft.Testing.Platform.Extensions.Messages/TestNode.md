@@ -10,15 +10,6 @@ Represents a test node.
 public class TestNode
 ```
 
-## Constructors
-
-### TestNode
-
-```csharp
-[Obsolete("Constructors of types with required members are not supported in this version of your compiler.", true)]
-public TestNode()
-```
-
 ## Properties
 
 ### DisplayName

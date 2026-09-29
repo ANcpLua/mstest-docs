@@ -11,9 +11,6 @@
 | **Introduced in version**           | 4.4.0 (preview)                                    |
 | **Is there a code fix**             | No                                                 |
 
-> [!IMPORTANT]
-> This analyzer is planned for MSTest 4.4 and is available only in preview builds until MSTest 4.4.0 is released.
-
 ## Cause
 
 A project applies `[AssemblyFixtureProvider]`, either directly or through a referenced library, while publishing with Native AOT (`PublishAot`) or Blazor WebAssembly AOT (`RunAOTCompilation`).

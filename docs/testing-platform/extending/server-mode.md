@@ -9,7 +9,7 @@ Start the public JSON-RPC server with `--server` or `--server jsonrpc`.
 
 ## Use the source-only client
 
-The MTP 2.4 preview provides a canonical JSON-RPC client. Add the [Microsoft.Testing.Platform.ServerMode.Client.Sources](https://www.nuget.org/packages/Microsoft.Testing.Platform.ServerMode.Client.Sources) package. The package injects C# source into your project instead of adding a runtime assembly.
+MTP 2.4 provides a canonical JSON-RPC client. Add the [Microsoft.Testing.Platform.ServerMode.Client.Sources](https://www.nuget.org/packages/Microsoft.Testing.Platform.ServerMode.Client.Sources) package. The package injects C# source into your project instead of adding a runtime assembly.
 
 The source-only design provides:
 
