@@ -12,7 +12,7 @@
 | **Is there a code fix**             | No                                                 |
 
 > [!NOTE]
-> This analyzer ships in the `MSTest.SourceGeneration` package and is only loaded for projects that have opted into the [MSTest reflection source generator](../running-tests/sdk.md), which is an experimental feature. It doesn't apply when the default reflection-based discovery is used.
+> This analyzer ships in the `MSTest.SourceGeneration` package and is only loaded for projects that have opted into the [MSTest reflection source generator](../running-tests/sdk.md). It doesn't apply when the default reflection-based discovery is used.
 
 ## Cause
 

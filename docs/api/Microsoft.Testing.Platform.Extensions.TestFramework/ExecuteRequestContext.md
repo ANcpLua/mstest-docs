@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Extensions.TestFramework`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 This class represents the context that is passed to a test framework adapter when the `ITestFramework.ExecuteRequestAsync(ExecuteRequestContext)` method is called.
 
@@ -75,3 +75,23 @@ public void Complete()
 ```
 
 Completes the execution request.
+
+### StartTestExecutionAsync
+
+```csharp
+[Experimental("TPEXP", UrlFormat = "https://aka.ms/testingplatform/diagnostics#{0}")]
+public Task<TestExecution> StartTestExecutionAsync(IDataProducer dataProducer, TestNodeUpdateMessage inProgressMessage)
+```
+
+Starts a canonical test execution and publishes its in-progress message.
+
+**Parameters:**
+
+- `dataProducer`: The data producer reporting the test execution.
+- `inProgressMessage`: The in-progress test node update.
+
+**Returns:** A task containing the started test execution.
+
+#### Remarks
+
+This API is experimental. It may change, break, or be removed at any time without notice.

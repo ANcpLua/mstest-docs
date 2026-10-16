@@ -48,6 +48,12 @@ Set `MtpServerClientOptions.IsStateful` to tell the server whether the client pr
 
 The client sends this setting through the experimental `capabilities.testing.isStateful` protocol capability.
 
+## Negotiate protocol compatibility
+
+Starting with MTP 2.4, server-mode protocol negotiation is independent from the MTP NuGet package version. A client declares the protocol versions that it supports, and the server selects a common version. When no supported version overlaps, the test application exits with the `ProtocolError` exit code (`12`) instead of continuing with an incompatible wire contract.
+
+Use the versioned [server-mode 1.0 JSON schema](https://github.com/microsoft/testfx/blob/main/docs/mstest-runner-protocol/server-mode-1.0.schema.json) to validate messages. The System.Text.Json and Jsonite serializers follow the same schema and error envelope.
+
 ## See also
 
 - [Run and debug tests with MTP](../run-and-debug.md)

@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Specifies connection string, table name and row access method for data driven testing.
 

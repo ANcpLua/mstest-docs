@@ -15,7 +15,7 @@
 
 A fixture method (methods with [`AssemblyInitializeAttribute`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/AssemblyInitializeAttribute.md), [`AssemblyCleanupAttribute`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/AssemblyCleanupAttribute.md), [`ClassInitializeAttribute`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/ClassInitializeAttribute.md), or [`ClassCleanupAttribute`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/ClassCleanupAttribute.md)) accesses restricted [`TestContext`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/TestContext.md) properties.
 
-Starting with MSTest.Analyzers 4.4 preview, the rule also reports constant indexer access to a restricted key, such as `testContext.Properties["TestName"]`. It doesn't report indexer access when the key isn't a constant string.
+Starting with MSTest.Analyzers 4.4, the rule also reports constant indexer access to a restricted key, such as `testContext.Properties["TestName"]`. It doesn't report indexer access when the key isn't a constant string.
 
 ## Rule description
 

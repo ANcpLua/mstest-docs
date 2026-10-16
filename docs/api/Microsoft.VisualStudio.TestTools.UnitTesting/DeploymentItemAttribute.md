@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.Extensions.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Used to specify a deployment item (file or directory) for per-test deployment. The specified files and folders are copied to the `TestContext`.DeploymentDirectory, which is the directory from which the test assembly is executed and where all deployment items are present alongside the test source DLL. Can be specified on a test class or a test method. Can have multiple instances of the attribute to specify more than one item. The item path can be absolute or relative; if relative, it's resolved against the build output directory (the folder that contains the test assembly).
 

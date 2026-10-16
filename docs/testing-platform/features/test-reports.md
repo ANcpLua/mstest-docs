@@ -55,6 +55,8 @@ builder.AddTrxReportProvider();
 > [!NOTE]
 > Available in MTP starting with version 2.3.0, TRX results stream to disk as the run progresses. If the test host crashes, the TRX file keeps the results collected before the crash.
 >
+> Starting with MTP 2.4, TRX uses controller-backed recovery by default when the platform has a test-host controller. Browser, WASI, iOS, and tvOS use the in-process compatibility path.
+>
 > Starting with MTP 2.4, an MTP-generated TRX preserves MSTest `[WorkItem]` and `[GitHubWorkItem]` metadata.
 
 ### Options
@@ -135,6 +137,8 @@ Starting with MTP 2.4, CTRF preserves every result when multiple tests use the s
 
 For retried tests, CTRF correlates attempts only when the relationship is unambiguous. It then records earlier attempts in `retryAttempts`, sets `retries`, and marks a later successful result as `flaky: true`. Ambiguous same-UID results remain separate so the report doesn't associate diagnostics with the wrong test.
 
+Starting with MTP 2.5, `testId` derives from the framework's complete MTP test node UID. The reporter escapes values in its reserved identity namespaces and uses a deterministic SHA-256 identity for long UIDs instead of truncating them. Each reported execution receives a new UUID in `executionId`, and earlier retry attempts receive their own `attemptId`. The compatibility field `extra.uid` retains the original MTP UID. Attachment paths remain opaque values and can point to local files that a remote consumer can't access.
+
 The terminal summary identifies flaky and retried tests. TRX and JUnit reports keep one final result per test instead of recording every attempt.
 
 ## Azure DevOps reports
@@ -192,7 +196,9 @@ The extension automatically detects that it runs in a continuous integration (CI
 
 Starting with MTP 2.4.0, Azure DevOps Markdown summaries aggregate results across every test module in a `dotnet test` invocation. When you also enable code coverage, the summary includes covered and total counts, percentages, threshold results, and an indicator when coverage data is partial.
 
-In MTP 2.4, live publishing automatically uploads file attachments for unsuccessful results to Azure DevOps test results. Unsuccessful outcomes include failed, errored, timed-out, and canceled results.
+Starting with MTP 2.5, the summary also presents pass rates, flaky-test history, duration comparisons, test dependency edges, focused failure diagnostics, and a compact deterministic layout for multi-module runs.
+
+Starting with MTP 2.4, live publishing automatically uploads file attachments for unsuccessful results to Azure DevOps test results. Unsuccessful outcomes include failed, errored, timed-out, and canceled results.
 
 When a result supplies standard output or standard error, the extension can attach up to 256 KiB of each inline stream. Each file-backed attachment has a 16-MiB limit.
 

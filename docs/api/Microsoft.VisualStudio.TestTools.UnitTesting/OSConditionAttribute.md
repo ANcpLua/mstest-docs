@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 This attribute is used to ignore a test class or a test method, with an optional message.
 

@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.Extensions.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Read-only ambient information about the current test run. Accessed via `TestRun.Current`.
 

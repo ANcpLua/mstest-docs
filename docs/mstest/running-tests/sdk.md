@@ -11,6 +11,24 @@ This article covers advanced configuration options for MSTest.Sdk. For basic set
 
 If the project that uses MSTest.Sdk is intended to be a test utility helper library, and doesn't by itself contain any runnable tests, the project should have `<IsTestApplication>false</IsTestApplication>`.
 
+## Test Windows application models
+
+Starting with MSTest.Sdk 4.5, the default MTP runner supports the following Windows application models:
+
+- Classic UWP projects that target `uap10.0`.
+- Modern UWP projects that use .NET 10 and set `UseUwp` to `true`.
+- Packaged full-trust WinUI 3 projects.
+- Unpackaged WinUI 3 projects.
+- WinUI 3 `packagedClassicApp` projects that set `TrustLevel="appContainer"`.
+
+MSTest.Sdk supplies compatible MTP 2.5 components and starts a full-trust app-model sidecar for packaged and AppContainer test hosts. The sidecar registers the package, activates the selected application by AUMID, authorizes the exact package SID for AppContainer communication, and recovers result artifacts from package storage.
+
+UWP projects still require the Visual Studio UWP workload and desktop MSBuild for build-time support.
+
+For project configuration, run commands, and samples, see [Test UWP and WinUI 3 apps with MSTest and MTP](../writing-tests/packaged-apps.md).
+
+Starting with MSTest.Sdk 4.5, set `EnableWindowsUIAutomation` to `true` to add the matching `MSTest.Windows.UIAutomation` package to a Windows-targeted project. This feature launches and automates an external unpackaged Win32, Windows Forms, or WPF application rather than hosting tests inside a UWP or WinUI app. For details, see [Test Windows desktop apps with MSTest UI Automation](../writing-tests/ui-automation.md).
+
 ## Extend MTP
 
 You can customize the MTP experience through a set of [NuGet package extensions](../../testing-platform/features/overview.md). To simplify and improve this experience, MSTest SDK introduces two features:
@@ -33,7 +51,7 @@ You can set the profile using the property `TestingExtensionsProfile` with one o
   * [Code Coverage](../../testing-platform/features/code-coverage.md#microsoft-code-coverage)
   * [Trx Report](../../testing-platform/features/test-reports.md#visual-studio-test-reports-trx)
   * [Azure DevOps Report](../../testing-platform/features/test-reports.md#azure-devops-reports) (MSTest.Sdk 4.3.0+)
-  * [GitHub Actions Report](../../testing-platform/features/test-reports.md#github-actions-reports) (experimental and prerelease, MSTest.Sdk 4.3.0+)
+  * [GitHub Actions Report](../../testing-platform/features/test-reports.md#github-actions-reports) (MSTest.Sdk 4.3.0+; the package was prerelease in 4.3.x and follows the MTP release version starting in 4.4)
 
 * `AllMicrosoft` - Enables the Microsoft extensions selected for broad out-of-the-box use, including extensions with a restrictive license. Experimental and API-only extensions can still require explicit opt-in.
 
@@ -53,7 +71,7 @@ You can set the profile using the property `TestingExtensionsProfile` with one o
 Here's a full example, using the `None` profile:
 
 ```xml
-<Project Sdk="MSTest.Sdk/4.4.1">
+<Project Sdk="MSTest.Sdk/4.5.1">
 
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
@@ -85,7 +103,7 @@ Extensions can be enabled and disabled by MSBuild properties with the pattern `E
 For example, to enable the crash dump extension (NuGet package [Microsoft.Testing.Extensions.CrashDump](https://www.nuget.org/packages/Microsoft.Testing.Extensions.CrashDump)), you can use the following property `EnableMicrosoftTestingExtensionsCrashDump` set to `true`:
 
 ```xml
-<Project Sdk="MSTest.Sdk/4.4.1">
+<Project Sdk="MSTest.Sdk/4.5.1">
 
 <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -115,7 +133,7 @@ This property pattern can be used to enable an additional extension on top of th
 You can also disable an extension that's coming from the selected profile. For example, disable the `MS Code Coverage` extension by setting `<EnableMicrosoftTestingExtensionsCodeCoverage>false</EnableMicrosoftTestingExtensionsCodeCoverage>`:
 
 ```xml
-<Project Sdk="MSTest.Sdk/4.4.1">
+<Project Sdk="MSTest.Sdk/4.5.1">
 
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
@@ -141,7 +159,7 @@ Aspire is an opinionated, cloud-ready stack for building observable, production 
 By setting the property `EnableAspireTesting` to `true`, you can bring all dependencies and default `using` directives you need for testing with `Aspire` and `MSTest`.
 
 ```xml
-<Project Sdk="MSTest.Sdk/4.4.1">
+<Project Sdk="MSTest.Sdk/4.5.1">
 
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
@@ -161,7 +179,7 @@ Playwright enables reliable end-to-end testing for modern web apps. For more inf
 By setting the property `EnablePlaywright` to `true` you can bring in all the dependencies and default `using` directives you need for testing with `Playwright` and `MSTest`.
 
 ```xml
-<Project Sdk="MSTest.Sdk/4.4.1">
+<Project Sdk="MSTest.Sdk/4.5.1">
 
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>

@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Specifies how a test accesses a resource declared with `ResourceLockAttribute`.
 

@@ -1,6 +1,6 @@
 # MSTest assertions
 
-Use the `Assert` classes of the [`UnitTesting`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting?view=mstest-net-4.4) namespace to verify specific functionality. A test method exercises the code in your application but reports correctness only when you include `Assert` statements.
+Use the `Assert` classes of the [`UnitTesting`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting?view=mstest-net-4.5) namespace to verify specific functionality. A test method exercises the code in your application but reports correctness only when you include `Assert` statements.
 
 ## Overview
 

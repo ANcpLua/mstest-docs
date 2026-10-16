@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Attribute to define in-line data for a test method.
 
@@ -57,6 +57,18 @@ Initializes a new instance of the `DataRowAttribute` class with an array of stri
 
 ## Properties
 
+### ArgumentsDisplayName
+
+```csharp
+public string? ArgumentsDisplayName { get; set; }
+```
+
+Gets or sets the text displayed in place of the test arguments, while retaining the test method display name.
+
+#### Remarks
+
+A null, empty, or whitespace-only value uses the default argument display text. Otherwise, the value is displayed verbatim using the default data-driven test name format. A non-empty, non-whitespace `DataRowAttribute.DisplayName` takes precedence over this property.
+
 ### Data
 
 ```csharp
@@ -101,7 +113,7 @@ Gets the test data from custom test data source.
 
 Each element of the returned sequence represents the arguments for a single invocation of the test method. In the common case, an element is an `Object` array whose items are the positional arguments passed to the test method.
 
-To attach per-row metadata (such as a custom display name, an ignore reason, or test categories), return a single-element `Object` array whose only item is a `TestDataRow` instance, for example `new object[] { new TestDataRow<(int, int, int)>((1, 2, 3)) { DisplayName = "my row" } }`. When MSTest sees a `TestDataRow`, it unwraps its `TestDataRow.Value` to obtain the actual test method arguments and applies the row's `TestDataRow.DisplayName`, `TestDataRow.IgnoreMessage`, and `TestDataRow.TestCategories`.
+To attach per-row metadata (such as a custom display name, an ignore reason, or test categories), return a single-element `Object` array whose only item is a `TestDataRow` instance, for example `new object[] { new TestDataRow<(int, int, int)>((1, 2, 3)) { DisplayName = "my row" } }`. When MSTest sees a `TestDataRow`, it unwraps its `TestDataRow.Value` to obtain the actual test method arguments and applies the row's `TestDataRow.DisplayName`, `TestDataRow.ArgumentsDisplayName`, `TestDataRow.IgnoreMessage`, and `TestDataRow.TestCategories`.
 
 The whole data source can be ignored (rather than a single row) by implementing `ITestDataSourceIgnoreCapability` on the data source type.
 

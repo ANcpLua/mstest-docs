@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Extensions.Messages`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 Identifies a code-coverage metric. This is a closed but append-only set: consumers MUST treat unrecognized values non-exhaustively (always handle a default case). New well-known members may be added in future versions without being a breaking change.
 

@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Specifies whether sequence elements must appear in the same order, or in any order, when comparing collections with `Assert.AreSequenceEqual(IEnumerable<T0>,IEnumerable<T0>,SequenceOrder,String,String,String)`.
 

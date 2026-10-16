@@ -17,7 +17,7 @@ Use [MSTest SDK](sdk.md) to greatly simplify your project configuration, version
 `MSTest.Sdk` replaces `Microsoft.NET.Sdk` as the project SDK, and MTP is enabled by default:
 
 ```xml
-<Project Sdk="MSTest.Sdk/4.4.1">
+<Project Sdk="MSTest.Sdk/4.5.1">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -62,7 +62,7 @@ Consider the following example project file:
           Microsoft.Testing.Extensions.TrxReport
           Microsoft.Testing.Extensions.CodeCoverage
     -->
-    <PackageReference Include="MSTest" Version="4.4.1" />
+    <PackageReference Include="MSTest" Version="4.5.1" />
   </ItemGroup>
 
 </Project>
@@ -131,5 +131,7 @@ Contoso.MyTests.exe --filter "FullyQualifiedName~UnitTest1|TestCategory=Category
 - [Testing with `dotnet test`](../../testing-platform/dotnet-test.md)
 - [`dotnet test` with MTP](../../testing-platform/dotnet-test-cli.md)
 - [MTP CLI options reference](../../testing-platform/cli-options.md)
+- [Test UWP and WinUI 3 apps with MSTest and MTP](../writing-tests/packaged-apps.md)
+- [Test Windows desktop apps with MSTest UI Automation](../writing-tests/ui-automation.md)
 - [Filter tests](filter.md)
 - [Order unit tests](../writing-tests/ordering.md)

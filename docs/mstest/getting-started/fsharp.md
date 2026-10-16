@@ -43,7 +43,7 @@ Make the *MathService.Tests* directory the current directory and create a new pr
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="MSTest" Version="4.4.1" />
+  <PackageReference Include="MSTest" Version="4.5.1" />
 </ItemGroup>
 ```
 

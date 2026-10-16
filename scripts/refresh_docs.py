@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build docs/ as Markdown for MSTest on Microsoft.Testing.Platform, rebuild CLAUDE.md.
+"""Build docs/ as Markdown for MSTest on Microsoft.Testing.Platform, rebuild AGENTS.md.
 
 Guides come from dotnet/docs (branch `live`, the source of learn.microsoft.com), the API reference from the
 NuGet packages pinned in VERSION. Everything about other test platforms is left out.
@@ -36,6 +36,8 @@ PAGES = {
     "testing/unit-testing-mstest-writing-tests-assertions.md": "mstest/writing-tests/assertions.md",
     "testing/unit-testing-mstest-writing-tests-testcontext.md": "mstest/writing-tests/testcontext.md",
     "testing/unit-testing-mstest-writing-tests-data-driven.md": "mstest/writing-tests/data-driven.md",
+    "testing/unit-testing-mstest-ui-automation.md": "mstest/writing-tests/ui-automation.md",
+    "testing/unit-testing-mstest-winui.md": "mstest/writing-tests/packaged-apps.md",
     "testing/unit-testing-mstest-writing-tests-lifecycle.md": "mstest/writing-tests/lifecycle.md",
     "testing/unit-testing-mstest-writing-tests-controlling-execution.md": "mstest/writing-tests/controlling-execution.md",
     "testing/unit-testing-mstest-writing-tests-organizing.md": "mstest/writing-tests/organizing.md",
@@ -73,8 +75,8 @@ PAGES = {
     "testing/microsoft-testing-platform-server-mode.md": "testing-platform/extending/server-mode.md",
 }
 ANALYZERS = ("testing/mstest-analyzers", "mstest/analyzers")
-# MSTest and platform pages left out: another platform, migration from older versions, Windows-only tooling.
-LEFT_OUT = re.compile(r"bridge|migrat|winui|fakes")
+# MSTest and platform pages left out: another test platform, migration from older versions, and Microsoft Fakes.
+LEFT_OUT = re.compile(r"bridge|migrat|fakes")
 PIVOT = "mstest"
 
 # Package -> assemblies inside the package, `{tfm}` being the best match for the TFM in VERSION.
@@ -90,7 +92,7 @@ BANNED = re.compile(
     r"|Migrating from \.runsettings|test-migration|TestingPlatform(?:DotnetTestSupport|ShowTestsFailure|CaptureOutput)|ForcedLegacyMode|\.testsettings"  # older versions
     r"|Deprecated in MTP|but is deprecated|No longer supported starting from MSTest v4"
     r"|\.NET 1[12]\b|preview builds?|under development"  # newer than the pins, or no longer a preview
-    r"|winui|Fakes",  # Windows-only tooling
+    r"|Fakes",  # Separate tooling outside the MSTest/MTP surface
     re.IGNORECASE,
 )
 # An option of `dotnet test` that needs a newer SDK than the pinned one goes as a whole.
@@ -100,12 +102,8 @@ NEWER = re.compile(r"\.NET 1[12]\b")
 PREVIEW = re.compile(r"(?:\b[Tt]he )?\b((?:MSTest(?:\.Sdk)?|MTP) \d+\.\d+(?:\.\d+)?)( and (?:MSTest|MTP) \d+\.\d+)? previews?\b(?: builds(?=,))?(?! build)")
 # Passages reworded before the removal, so that what they say about MTP survives: page -> [(pattern, replacement)].
 PATCHES = {
-    "mstest/intro.md": [
-        (r"#### UWP testing.*?(?=#### WinUI 3 testing)", ""),
-    ],
     "mstest/getting-started/overview.md": [
         (r"extension profiles, switching to VSTest, or integrating", "extension profiles or integrating"),
-        (r"^\| \*\*BlankUwpNet9App\*\*.*\n", ""),
     ],
     "mstest/running-tests/overview.md": [
         (r"^## VSTest vs MTP$", "## MSTest runner"),
@@ -626,29 +624,12 @@ def empty_sections(lines):
 # ---------------------------------------------------------------- index
 
 
-def first_sentence(text):
-    sentence = re.split(r"(?<![ (][a-z]\.[a-z][.])(?<=[.!?])\s+(?=[A-Z`])", text.strip(), maxsplit=1)[0].rstrip(":")
-    return sentence if len(sentence) <= 160 else sentence[:157].rstrip() + "…"
-
-
-def describe(path, meta):
+def page_title(path, meta):
     text = path.read_text(encoding="utf-8")
-    title = meta.get("title") or re.search(r"^# (.*)$", text, re.MULTILINE).group(1)
-    summary = meta.get("description")
-    if summary is None:
-        found = re.search(r"^- Package:.*\n\n((?!```)[^\n#].*)$", text, re.MULTILINE)
-        summary = found.group(1) if found else ""
-    summary = sentences(summary)[0]
-    if not summary:
-        summary = next((line for line in text.split("\n")[1:] if re.match(r"[A-Z`]", line)), "")
-    return title, re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", summary)
+    return meta.get("title") or re.search(r"^# (.*)$", text, re.MULTILINE).group(1)
 
 
-def write_claude_md(rows, pins, commit):
-    groups = collections.OrderedDict()
-    for path, title, summary in sorted(rows, key=lambda r: (r[0].startswith("docs/api/"), r[0].count("/") > 2, r[0])):
-        groups.setdefault(str(Path(path).parent), []).append((path, title, summary))
-
+def write_agent_index(rows, pins, commit):
     width = max(len(key) for key in pins)
     lines = [
         "# MSTest docs — local Markdown copy",
@@ -661,11 +642,11 @@ def write_claude_md(rows, pins, commit):
         "",
         "## How to use this folder",
         "",
-        "- Find the topic below, open **one** file, read it. Don't load the whole folder.",
-        "- Paths are relative to this folder. `grep -ril <term> docs/` when the index doesn't name it.",
+        "- Open the relevant topic index below, then read the page you need. Do not load the whole corpus.",
+        "- Paths are relative to this folder. `rg -l <term> docs/` when the index doesn't name it.",
         "- `docs/mstest/` and `docs/testing-platform/` are the guides, `docs/api/` is the API reference of exactly the pinned packages.",
         "- The guides name the version a feature arrived in; the API reference is proof of what the pinned version has.",
-        "- Left out on purpose: other test platforms, migration from older versions, obsolete API, what needs a newer .NET SDK than the pinned one, WinUI and Microsoft Fakes.",
+        "- Left out on purpose: other test platforms, migration from older versions, obsolete API, what needs a newer .NET SDK than the pinned one, and Microsoft Fakes.",
         "",
         "## Sources",
         "",
@@ -685,12 +666,29 @@ def write_claude_md(rows, pins, commit):
         "## Index",
         "",
     ]
-    for group, items in groups.items():
-        lines += [f"### `{group}/`", ""]
-        for path, title, summary in items:
-            lines.append(f"- `{path}` — **{title}**" + (f": {first_sentence(summary)}" if summary else ""))
-        lines.append("")
-    (ROOT / "CLAUDE.md").write_text("\n".join(lines), encoding="utf-8")
+    for section in ("mstest", "testing-platform", "api"):
+        count = sum(path.startswith(f"docs/{section}/") for path, _ in rows)
+        lines.append(f"- [docs/{section}/](docs/{section}/AGENTS.md) — {count} pages.")
+    (ROOT / "AGENTS.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+    pages = collections.defaultdict(list)
+    children = collections.defaultdict(set)
+    for path, title in rows:
+        relative = Path(path).relative_to("docs")
+        folder = relative.parent
+        pages[folder].append((relative.name, title))
+        while len(folder.parts) > 1:
+            children[folder.parent].add(folder)
+            folder = folder.parent
+    for folder in sorted(set(pages) | set(children)):
+        directory = DOCS / folder
+        index = [f"# {folder.as_posix()}", "", "Open one relevant page. This index is generated by `scripts/refresh_docs.py`.", ""]
+        for child in sorted(children[folder]):
+            relative = child.relative_to(folder)
+            index.append(f"- [{relative}/]({relative.as_posix()}/AGENTS.md)")
+        for filename, title in sorted(pages[folder]):
+            index.append(f"- [{title}]({filename})")
+        (directory / "AGENTS.md").write_text("\n".join(index) + "\n", encoding="utf-8")
 
 
 def main():
@@ -721,7 +719,7 @@ def main():
             path.unlink()
             continue
         path.write_text(one_platform(path.read_text(encoding="utf-8")), encoding="utf-8")
-        rows.append((path.relative_to(ROOT).as_posix(), *describe(path, metas.get(path, {}))))
+        rows.append((path.relative_to(ROOT).as_posix(), page_title(path, metas.get(path, {}))))
     for folder in sorted(DOCS.rglob("*"), reverse=True):
         if folder.is_dir() and not any(folder.iterdir()):
             folder.rmdir()
@@ -730,7 +728,7 @@ def main():
     if left:
         sys.exit("still names another platform:\n" + "\n".join(str(path) for path in left))
 
-    write_claude_md(rows, pins, commit)
+    write_agent_index(rows, pins, commit)
     if option("--removed"):
         Path(option("--removed")).write_text("\n\n----\n\n".join(removed), encoding="utf-8")
     print(f"{len(rows)} pages, {len(removed)} passages removed")

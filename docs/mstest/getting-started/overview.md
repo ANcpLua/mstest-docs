@@ -7,7 +7,7 @@ The recommended way to create an MSTest project is to use the [MSTest.Sdk](https
 To create an MSTest project, set the `Sdk` attribute to `MSTest.Sdk` along with the MSTest version in your project file:
 
 ```xml
-<Project Sdk="MSTest.Sdk/4.4.1">
+<Project Sdk="MSTest.Sdk/4.5.1">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
@@ -34,7 +34,7 @@ To simplify version management across multiple test projects, we recommend speci
 ```json
 {
     "msbuild-sdks": {
-        "MSTest.Sdk": "4.4.1"
+        "MSTest.Sdk": "4.5.1"
     }
 }
 ```
@@ -82,3 +82,10 @@ The MSTest team maintains sample projects in the [microsoft/testfx repository](h
 |--------|-------------|------|
 | **Simple1** | Basic MSTest runner setup | [View on GitHub](https://github.com/microsoft/testfx/tree/main/samples/public/mstest-runner/Simple1) |
 | **DemoMSTestSdk** | MSTest SDK project setup | [View on GitHub](https://github.com/microsoft/testfx/tree/main/samples/public/DemoMSTestSdk) |
+| **UwpMtpApp** | Modern .NET UWP testing with Microsoft.Testing.Platform | [View on GitHub](https://github.com/microsoft/testfx/tree/main/samples/public/UwpMtpApp) |
+| **ClassicUwpMtpApp** | Classic `uap10.0` UWP testing with Microsoft.Testing.Platform | [View on GitHub](https://github.com/microsoft/testfx/tree/main/samples/public/ClassicUwpMtpApp) |
+| **WinUIMtpPackagedApp** | Packaged WinUI 3 testing with Microsoft.Testing.Platform | [View on GitHub](https://github.com/microsoft/testfx/tree/main/samples/public/WinUIMtpPackagedApp) |
+| **WinUIMtpUnpackagedApp** | Unpackaged WinUI 3 testing with Microsoft.Testing.Platform | [View on GitHub](https://github.com/microsoft/testfx/tree/main/samples/public/WinUIMtpUnpackagedApp) |
+| **WinUIMtpAppContainerApp** | AppContainer WinUI 3 testing with Microsoft.Testing.Platform | [View on GitHub](https://github.com/microsoft/testfx/tree/main/samples/public/WinUIMtpAppContainerApp) |
+| **NativeAotRunner** | Native AOT compilation | [View on GitHub](https://github.com/microsoft/testfx/tree/main/samples/public/mstest-runner/NativeAotRunner) |
+| **RunInDocker** | Containerized test execution | [View on GitHub](https://github.com/microsoft/testfx/tree/main/samples/public/mstest-runner/RunInDocker) |

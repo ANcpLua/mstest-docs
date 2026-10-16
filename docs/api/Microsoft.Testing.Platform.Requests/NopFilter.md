@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Requests`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 Represents a filter that does nothing.
 

@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Extensions.Messages`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 Reports a single code-coverage measurement (one metric for one scope) as counts. The percentage is derived, never stored.
 

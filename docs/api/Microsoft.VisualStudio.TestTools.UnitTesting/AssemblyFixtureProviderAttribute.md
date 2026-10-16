@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Indicates that the methods on the specified `AssemblyFixtureProviderAttribute.FixtureType` annotated with `AssemblyInitializeAttribute` or `AssemblyCleanupAttribute` should be discovered and executed once per consuming test assembly, even when the methods are not declared in that test assembly itself.
 

@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Declares that a test (or every test of a test class) must not start until one or more other tests have finished, forming a dependency graph that the in-assembly scheduler executes in topological order. Unlike a flat ordering attribute, independent branches of the graph still run in parallel.
 

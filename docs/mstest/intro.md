@@ -23,11 +23,62 @@ MSTest supports a wide range of .NET platforms and target frameworks. The follow
 |----------|-------------------|-------------------|-------------------|-------|
 | **.NET** | .NET 8+ | Full parallelization | All attributes | Recommended for new projects |
 | **.NET Framework** | 4.6.2+ | Full parallelization | All attributes | Full feature support |
+| **UWP** | UAP 10, .NET 10+ with UWP tooling | UI thread | `UITestMethod` | MSTest 4.5 and MTP 2.5 support classic and modern UWP through the MSTest.Sdk app-model sidecar |
+| **WinUI 3** | .NET 8+ | UI thread | `UITestMethod` | MTP supports packaged, unpackaged, and AppContainer hosts; see [Test UWP and WinUI 3 apps with MSTest and MTP](writing-tests/packaged-apps.md) |
+| **Windows desktop UI automation** | .NET 8+ Windows target | STA | `STATestClass` | MSTest 4.5 can launch unpackaged Win32, Windows Forms, and WPF apps and expose a window through Windows UI Automation |
 | **Native AOT** | .NET 8+ | Full parallelization | Most attributes | Limited feature set; see [Native AOT sample](https://github.com/microsoft/testfx/tree/main/samples/public/mstest-runner/NativeAotRunner) |
 | **Browser WebAssembly** | .NET 10+ custom host | Single-threaded | Limited | MTP execution support starts with MSTest 4.4 |
 | **WASI WebAssembly** | .NET 10+ custom host | Single-threaded | Limited | MTP execution support starts with MSTest 4.4 |
 
 ### Platform-specific considerations
+
+#### UWP testing
+
+UWP tests run in the UWP app container and require the UI thread for many operations:
+
+```csharp
+[TestClass]
+public class UwpTests
+{
+    [UITestMethod]
+    public void TestUwpControl()
+    {
+        // Test runs on UI thread
+        var button = new Button();
+        Assert.IsNotNull(button);
+    }
+}
+```
+
+Starting with MSTest 4.5 and MTP 2.5, use MSTest.Sdk to run classic UWP and modern .NET UWP tests through MTP. A full-trust sidecar registers and activates the package, authorizes the app's exact package SID for MTP communication, and copies result artifacts from package storage.
+
+Modern UWP requires .NET 10, `UseUwp`, and the Visual Studio UWP build toolchain. Classic UWP keeps its existing `uap10.0` project shape. For complete configurations, see the [modern UWP sample](https://github.com/microsoft/testfx/tree/main/samples/public/UwpMtpApp) and [classic UWP sample](https://github.com/microsoft/testfx/tree/main/samples/public/ClassicUwpMtpApp).
+
+#### WinUI 3 testing
+
+WinUI 3 tests also require UI thread access for testing visual components:
+
+```csharp
+[TestClass]
+public class WinUITests
+{
+    [UITestMethod]
+    public void TestWinUIControl()
+    {
+        // Test runs on UI thread
+        var window = new MainWindow();
+        Assert.IsNotNull(window);
+    }
+}
+```
+
+MTP supports packaged full-trust, unpackaged, and AppContainer-configured WinUI 3 test applications. MSTest.Sdk starts unpackaged apps directly and uses its app-model sidecar to register and activate packaged apps.
+
+AppContainer support requires MSTest 4.5 and MTP 2.5 or later. For setup details, see [Test UWP and WinUI 3 apps with MSTest and MTP](writing-tests/packaged-apps.md).
+
+#### Windows desktop UI automation
+
+The `MSTest.Windows.UIAutomation` package integrates MSTest lifecycle management with Windows UI Automation for unpackaged Win32, Windows Forms, and WPF applications. For setup, limitations, and the `ApplicationTest` and `WindowTest` base classes, see [Test Windows desktop apps with MSTest UI Automation](writing-tests/ui-automation.md).
 
 #### Native AOT
 
@@ -81,5 +132,7 @@ The MSTest team carefully reviews and minimizes breaking changes. When breaking 
 - [Get started with MSTest](getting-started/overview.md)
 - [Write tests](writing-tests/overview.md)
 - [Run tests](running-tests/overview.md)
+- [Test UWP and WinUI 3 apps](writing-tests/packaged-apps.md)
+- [Test Windows desktop apps with MSTest UI Automation](writing-tests/ui-automation.md)
 - [Configure MSTest](running-tests/configure.md)
 - [MSTest code analyzers](analyzers/overview.md)

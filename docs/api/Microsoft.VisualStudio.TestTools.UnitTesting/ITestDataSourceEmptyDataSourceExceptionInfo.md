@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Optional capability for a custom `ITestDataSource` to provide richer information when the data source returns no rows. When a data source implements this interface, MSTest uses the returned member and type names to build a more actionable exception message instead of the generic `GetData returned empty collection` message.
 

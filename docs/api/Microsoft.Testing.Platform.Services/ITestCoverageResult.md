@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Services`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 A correlated, session-scoped view of all coverage data for consumers. The platform correlates the raw coverage messages once and exposes this read model so consumers (the terminal, HTML/UI report generators, PR-comment bots, dashboards) never re-parse artifacts or re-implement aggregation.
 

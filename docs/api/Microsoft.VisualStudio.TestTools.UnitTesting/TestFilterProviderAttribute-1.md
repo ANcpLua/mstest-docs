@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Strongly typed variant of `TestFilterProviderAttribute` that registers `TFilter` as the `ITestFilter` implementation the MSTest adapter invokes for every test it is about to run.
 

@@ -112,7 +112,7 @@ Bootstrap-only options run before MTP loads configuration. Don't put `config-fil
 ### Passive command-line option defaults
 
 > [!IMPORTANT]
-> `commandLineOptionDefaults` is available in MTP 2.4.
+> `commandLineOptionDefaults` is available starting with MTP 2.4.
 
 Use `commandLineOptionDefaults` to supply an argument only when an enabled feature requests that option and no higher-priority value exists. A passive default doesn't enable an option, register an extension, or activate a feature. Omit the leading `--` from each key.
 
@@ -176,7 +176,7 @@ The following example shows a *testconfig.json* file that configures platform op
 ## MSBuild configuration
 
 > [!IMPORTANT]
-> `TestingPlatformEnvironmentVariable` is available in MTP 2.4.
+> `TestingPlatformEnvironmentVariable` is available starting with MTP 2.4.
 
 To set an environment variable on the test process that `InvokeTestingPlatform` launches, add a `TestingPlatformEnvironmentVariable` item:
 
@@ -186,6 +186,8 @@ To set an environment variable on the test process that `InvokeTestingPlatform` 
 ```
 
 The `Value` metadata preserves semicolons instead of splitting them into MSBuild items. Declared values overlay the environment that the MSBuild process inherits. Without these items, the launched process inherits the environment unchanged.
+
+Starting with MTP 2.4, `InvokeTestingPlatform` also derives the architecture-specific `DOTNET_ROOT_<ARCH>` variable from `DOTNET_HOST_PATH` when it launches a compatible apphost. Set `TestingPlatformDisableAppHostDotnetRoot` to `true` to opt out. An applicable `TestingPlatformEnvironmentVariable` item remains authoritative.
 
 ## Environment variables
 

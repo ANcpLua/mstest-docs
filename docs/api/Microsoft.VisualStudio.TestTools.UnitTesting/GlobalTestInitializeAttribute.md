@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 A global test initialize attribute that applies to every test method in the assembly. The method to which this attribute is applied must be public, static, non-generic, has a single parameter of type TestContext, and either returns void or a Task.
 

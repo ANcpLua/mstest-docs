@@ -1,6 +1,6 @@
-MSTest.Sdk       = 4.4.1
-MSTest API docs  = mstest-net-4.4
+MSTest.Sdk       = 4.5.1
+MSTest API docs  = mstest-net-4.5
 Runner           = Microsoft.Testing.Platform
-MTP              = 2.4.1
+MTP              = 2.5.1
 TFM              = net10.0
 .NET SDK         = 10.0.401 (Runtime 10.0.12)

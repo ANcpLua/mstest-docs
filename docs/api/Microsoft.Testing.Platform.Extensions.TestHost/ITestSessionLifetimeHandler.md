@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Extensions.TestHost`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 Represents an interface for handling the lifetime of a test session.
 

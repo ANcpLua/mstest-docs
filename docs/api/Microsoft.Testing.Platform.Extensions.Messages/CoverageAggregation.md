@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Extensions.Messages`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 How per-scope values are combined for a threshold evaluation. Append-only. The population being aggregated is identified separately by `TestCoverageThresholdMessage.AggregatedOver` — e.g. `CoverageAggregation.Minimum` over `CoverageScopeLevel.Module` vs. over `CoverageScopeLevel.File` are distinct evaluations.
 

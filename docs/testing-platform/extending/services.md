@@ -284,6 +284,21 @@ if (logger.IsEnabled(LogLevel.Information))
 
 Keep in mind that to prevent unnecessary allocation, you should check if the level is *enabled* using the `ILogger.IsEnabled(LogLevel)` API.
 
+## The `IDiagnosticLoggingInformation` service
+
+Starting with MTP 2.5, call `serviceProvider.GetDiagnosticLoggingInformation()` to retrieve experimental information about the built-in diagnostic file logger. The method returns `null` when diagnostic logging isn't enabled.
+
+The `IDiagnosticLoggingInformation` service exposes:
+
+- `LogFile`, the file that currently receives diagnostic entries.
+- `LogLevel`, the minimum level written to the file.
+- `SynchronousWrite`, which indicates whether the file logger writes entries synchronously.
+
+The service is live. During test application construction, MTP can relocate the log to the effective results directory. Retain the service and read `LogFile` when you need the path instead of caching the first `FileInfo`. If log recovery leaves a partial file in the original location, `LogFile` identifies the replacement file that receives new entries.
+
+> [!IMPORTANT]
+> This API uses the `TPEXP` diagnostic ID and might change or be removed in a future release.
+
 ## The `IMessageBus` service
 
 The message bus service is the central mechanism that facilitates information exchange between the test framework and its extensions.

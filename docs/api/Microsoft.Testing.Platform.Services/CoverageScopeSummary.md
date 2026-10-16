@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Services`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 All coverage metrics correlated for a single scope. This is the primary summary-layer surface for report generators: one entry per scope, with every metric that scope reported.
 

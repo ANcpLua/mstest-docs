@@ -26,8 +26,8 @@ Use the following path based on your goal:
 - Need coverage data: [Code coverage](code-coverage.md) (extension)
 - Need crash or hang diagnostics: [Crash and hang dumps](crash-hang-dumps.md) (extension)
 - Need to record the screen during a run: [Diagnostics](diagnostics.md) (extension, experimental)
-- Need to deploy and launch a packaged-app test host: [Test host deployment](test-host-deployment.md) (extension, experimental)
-- Need to route platform logs through `Microsoft.Extensions.Logging`: [Microsoft.Extensions integration](extensions-integration.md) (extension, experimental)
+- Need to deploy and launch a packaged full-trust, UWP, or AppContainer test host: [Test host deployment](test-host-deployment.md) (extension; experimental launcher API)
+- Need to reuse `Microsoft.Extensions.Configuration`, `Microsoft.Extensions.Hosting`, or `Microsoft.Extensions.Logging`: [Microsoft.Extensions integration](extensions-integration.md) (extension, experimental)
 - Need to build editor or IDE integration: [Server mode](../extending/server-mode.md) (built-in)
 - Need to load extensions that aren't compile-time references: [Dynamic extension loading](../extending/extensions.md#load-extensions-dynamically) (built-in, opt-in)
 - Need to retry failed tests: [Retry](retry.md#retry) (extension)
@@ -92,10 +92,10 @@ Telemetry collection. Learn how to opt out and what data is collected.
 
 Capture evidence to diagnose a run, such as recording the screen with the video recorder.
 
-**[Test host deployment](test-host-deployment.md)** (experimental, introduced in MTP 2.3.0)
+**[Test host deployment](test-host-deployment.md)** (introduced in MTP 2.3.0; stable package API starting in MTP 2.4.0; experimental launcher API; UWP and AppContainer support introduced in MTP 2.5)
 
-Control how and where the test host is deployed and launched, such as deploying and launching a packaged-app test host.
+Control how and where the test host is deployed and launched, including packaged full-trust, UWP, and AppContainer test hosts.
 
-**[Microsoft.Extensions integration](extensions-integration.md)** (experimental, introduced in MTP 2.3.0)
+**[Microsoft.Extensions integration](extensions-integration.md)** (experimental; logging introduced in MTP 2.3.0; configuration and hosting introduced in MTP 2.5)
 
-Bridge platform and extension diagnostics into the `Microsoft.Extensions.*` libraries your application already uses, such as forwarding logs through the `Microsoft.Extensions.Logging` pipeline.
+Bridge MTP to the `Microsoft.Extensions.*` libraries your application already uses, including configuration snapshots, application-owned hosts, and diagnostic log forwarding.

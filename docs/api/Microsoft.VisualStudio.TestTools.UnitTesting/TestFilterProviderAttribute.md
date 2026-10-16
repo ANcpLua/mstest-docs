@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Registers a user-supplied `ITestFilter` implementation that the MSTest adapter invokes for every test it is about to run, after any command-line filter (`--filter`, Test Explorer selection, etc.) has been applied.
 

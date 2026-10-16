@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Extensions.Messages`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 Property that identifies a test node update as one attempt of an in-process retry sequence, i.e. several executions of the same test that a test framework performed within a single test host run and reported under the same `TestNode.Uid`.
 

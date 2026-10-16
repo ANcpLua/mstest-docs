@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Well-known resource keys for common process-global state, for use with `ResourceLockAttribute`. These are plain string constants: they use the exact same equality-based conflict mechanism as any user-invented key, and are provided only so that tests contending on the same ambient state agree on a spelling.
 

@@ -130,7 +130,7 @@ MSTest documentation is organized by topic:
 
 ## Assertions
 
-Use the Assert classes of the [`UnitTesting`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting?view=mstest-net-4.4) namespace to verify specific functionality. A test method exercises code in your application, but it reports correctness only when you include Assert statements.
+Use the Assert classes of the [`UnitTesting`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting?view=mstest-net-4.5) namespace to verify specific functionality. A test method exercises code in your application, but it reports correctness only when you include Assert statements.
 
 MSTest assertions are divided into:
 
@@ -142,8 +142,8 @@ MSTest assertions are divided into:
 
 You can test private members using reflection wrapper classes:
 
-- [`PrivateObject`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting.privateobject?view=mstest-net-4.4): For private instance methods
-- [`PrivateType`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting.privatetype?view=mstest-net-4.4): For private static methods
+- [`PrivateObject`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting.privateobject?view=mstest-net-4.5): For private instance methods
+- [`PrivateType`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting.privatetype?view=mstest-net-4.5): For private static methods
 
 > [!TIP]
 > Consider whether private methods need direct testing. Often, testing through public interfaces provides better coverage and more maintainable tests.

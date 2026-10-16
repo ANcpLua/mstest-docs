@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Extensions.ArtifactPostProcessing`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 Marks an artifact post-processor whose inputs are internal coordination artifacts that must always be post-processed, including when only one matching input exists.
 

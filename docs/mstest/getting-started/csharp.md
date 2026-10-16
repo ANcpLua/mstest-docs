@@ -60,7 +60,7 @@ Make the *PrimeService.Tests* directory the current directory and create a new p
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="MSTest" Version="4.4.1" />
+  <PackageReference Include="MSTest" Version="4.5.1" />
 </ItemGroup>
 ```
 
@@ -174,6 +174,6 @@ You built a small library and a set of unit tests for that library. You structur
 
 ## See also
 
-- [`UnitTesting`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting?view=mstest-net-4.4)
+- [`UnitTesting`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting?view=mstest-net-4.5)
 - [Use the MSTest framework in unit tests](https://learn.microsoft.com/en-us/visualstudio/test/using-microsoft-visualstudio-testtools-unittesting-members-in-unit-tests)
 - [MSTest V2 test framework docs](https://github.com/Microsoft/testfx-docs)

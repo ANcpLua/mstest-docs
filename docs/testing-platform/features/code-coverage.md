@@ -35,7 +35,7 @@ For more information about the available options, see [settings](https://learn.m
 ## Coverage summaries and thresholds
 
 > [!IMPORTANT]
-> The first-class coverage result model is available in MTP 2.4.
+> The first-class coverage result model is available starting with MTP 2.4.
 
 Compatible collectors can publish covered and coverable measurements, threshold evaluations, and coverage report references as one correlated test coverage result. The terminal reporter and compatible report consumers render the measurements and derive percentages without parsing collector-specific files.
 

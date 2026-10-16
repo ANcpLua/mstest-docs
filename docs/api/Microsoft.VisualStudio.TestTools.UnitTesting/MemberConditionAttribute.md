@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Conditionally runs or ignores a test class or test method based on the value of one or more `static` `Boolean` members (property, field, or parameterless method) referenced by `Type` and member name.
 

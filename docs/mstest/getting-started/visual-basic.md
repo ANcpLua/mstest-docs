@@ -48,7 +48,7 @@ Make the *PrimeService.Tests* directory the current directory and create a new p
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="MSTest" Version="4.4.1" />
+  <PackageReference Include="MSTest" Version="4.5.1" />
 </ItemGroup>
 ```
 

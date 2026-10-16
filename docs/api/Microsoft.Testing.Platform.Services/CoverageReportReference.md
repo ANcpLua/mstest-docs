@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Services`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 A pointer to a rich coverage report artifact, correlated through `ITestCoverageResult`. Deep consumers (HTML/UI generators) parse the referenced artifact for the per-line data the summary intentionally does not carry.
 

@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Extensions.Messages`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 Property that carries the structured `expected` and `actual` values of a failed assertion, so consumers can render an expected-vs-actual diff instead of only a flat failure message.
 

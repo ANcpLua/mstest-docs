@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 A collection of helper classes to test various conditions within unit tests. If the condition being tested is not met, an exception is thrown.
 
@@ -3973,6 +3973,10 @@ Tests whether the specified collection contains the given element.
 - `expectedExpression`: The syntactic expression of expected as given by the compiler via caller argument expression. Users shouldn't pass a value for this parameter.
 - `collectionExpression`: The syntactic expression of collection as given by the compiler via caller argument expression. Users shouldn't pass a value for this parameter.
 
+#### Remarks
+
+The collection may contain null elements even when `expected` is not null.
+
 ```csharp
 public static void Contains<T>(
     Func<T, bool> predicate,
@@ -4320,6 +4324,10 @@ Tests whether the specified collection contains the given element.
 - `message`: The message to display when the assertion fails.
 - `expectedExpression`: The syntactic expression of expected as given by the compiler via caller argument expression. Users shouldn't pass a value for this parameter.
 - `collectionExpression`: The syntactic expression of collection as given by the compiler via caller argument expression. Users shouldn't pass a value for this parameter.
+
+#### Remarks
+
+The collection may contain null elements even when `expected` is not null.
 
 ```csharp
 public static void Contains<T>(
@@ -5494,6 +5502,10 @@ Tests whether the specified collection does not contain the specified item.
 - `notExpectedExpression`: The syntactic expression of notExpected as given by the compiler via caller argument expression. Users shouldn't pass a value for this parameter.
 - `collectionExpression`: The syntactic expression of collection as given by the compiler via caller argument expression. Users shouldn't pass a value for this parameter.
 
+#### Remarks
+
+The collection may contain null elements even when `notExpected` is not null.
+
 ```csharp
 public static void DoesNotContain<T>(
     Func<T, bool> predicate,
@@ -5841,6 +5853,10 @@ Tests whether the specified collection does not contain the specified item.
 - `message`: The message to display when the assertion fails.
 - `notExpectedExpression`: The syntactic expression of notExpected as given by the compiler via caller argument expression. Users shouldn't pass a value for this parameter.
 - `collectionExpression`: The syntactic expression of collection as given by the compiler via caller argument expression. Users shouldn't pass a value for this parameter.
+
+#### Remarks
+
+The collection may contain null elements even when `notExpected` is not null.
 
 ```csharp
 public static void DoesNotContain<T>(

@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Declares that a test or test class contends on a named shared resource, so that the in-assembly parallel scheduler serializes it only against other tests that declare the same resource, instead of forcing whole classes or assemblies to opt out of parallelization with `DoNotParallelizeAttribute`.
 

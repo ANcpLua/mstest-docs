@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Extensions.Messages`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 Identifies the entity a coverage measurement or threshold describes. Scope levels form overlapping dimensions rather than a single parent hierarchy (a file can contain many types and a partial type can span many files), so this models scope identity, not a forced tree.
 

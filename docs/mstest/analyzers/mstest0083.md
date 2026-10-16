@@ -8,7 +8,7 @@
 | **Fix is breaking or non-breaking** | Non-breaking                                       |
 | **Enabled by default**              | Yes                                                |
 | **Default severity**                | Info                                               |
-| **Introduced in version**           | 4.4.0 (preview)                                    |
+| **Introduced in version**           | 4.4.0                                              |
 | **Is there a code fix**             | Yes, for C# only                                   |
 
 ## Cause

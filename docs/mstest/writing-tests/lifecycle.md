@@ -233,6 +233,36 @@ public class GlobalTestLifecycleExample
 
 Test-level lifecycle runs for every test method. For parameterized tests, the lifecycle runs for each data row.
 
+### Create test classes from host services
+
+Starting with MSTest 4.5, the experimental [`MSTest.Extensions.Hosting`](https://github.com/microsoft/testfx/tree/main/src/Adapter/MSTest.Extensions.Hosting) package lets an application-owned `Microsoft.Extensions.Hosting` container create MSTest test classes.
+
+Register the integration in the same host that runs MTP:
+
+```csharp
+HostApplicationBuilder builder = Host.CreateApplicationBuilder();
+builder.Services.AddSingleton<MyApplicationService>();
+builder.Services.AddMSTestTestClassInjection();
+```
+
+A test class can request registered services and an optional exact `TestContext` parameter through a public constructor:
+
+```csharp
+[TestClass]
+public sealed class MyTests(MyApplicationService service, TestContext testContext)
+{
+    [TestMethod]
+    public void ServiceIsAvailable() => Assert.IsNotNull(service);
+}
+```
+
+The integration creates one dependency-injection scope for each test invocation, including each data row and retry attempt. `TestInitialize`, the test method, and `TestCleanup` share the same test-class instance and scope. After cleanup, MSTest disposes the test-class instance and then the scope. The application still owns the host and root service provider.
+
+This first reflection-based integration doesn't support Native AOT, browser WebAssembly, AOT compilation, or MSTest source generation. The `AddMSTestTestClassInjection` API uses the `MSTESTEXP` diagnostic ID and might change in a future release. For host setup, see [Microsoft.Extensions integration](../../testing-platform/features/extensions-integration.md#host-integration).
+
+> [!TIP]
+> Related analyzers: [MSTEST0063](../analyzers/mstest0063.md#host-owned-test-class-injection) validates constructors for host-owned injection, and [MSTEST0088](../analyzers/mstest0088.md) reports unsupported build modes.
+
 ### Setup phase
 
 Use `TestInitialize` or a constructor for per-test setup:
@@ -292,7 +322,7 @@ public class TestLevelSetupExample
 The test method executes after setup completes. For `async` test methods, MSTest awaits the returned `Task` or `ValueTask`.
 
 > [!WARNING]
-> Asynchronous test methods don't have a [`SynchronizationContext`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.synchronizationcontext) by default.
+> Asynchronous test methods don't have a [`SynchronizationContext`](https://learn.microsoft.com/en-us/dotnet/api/system.threading.synchronizationcontext) by default. This doesn't apply to `UITestMethod` tests in UWP and WinUI, which run on the UI thread.
 
 ### Cleanup phase
 

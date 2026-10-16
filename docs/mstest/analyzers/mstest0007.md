@@ -20,10 +20,10 @@ A method that's not marked with [`TestMethodAttribute`](../../api/Microsoft.Visu
 The following test attributes should only be applied on methods marked with the [`TestMethodAttribute`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/TestMethodAttribute.md) attribute:
 
 - [`ConditionBaseAttribute`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/ConditionBaseAttribute.md)
-- [`CssIterationAttribute`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting.cssiterationattribute?view=mstest-net-4.4)
-- [`CssProjectStructureAttribute`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting.cssprojectstructureattribute?view=mstest-net-4.4)
+- [`CssIterationAttribute`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting.cssiterationattribute?view=mstest-net-4.5)
+- [`CssProjectStructureAttribute`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting.cssprojectstructureattribute?view=mstest-net-4.5)
 - [`DescriptionAttribute`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/DescriptionAttribute.md)
-- [`ExpectedExceptionBaseAttribute`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting.expectedexceptionbaseattribute?view=mstest-net-4.4)
+- [`ExpectedExceptionBaseAttribute`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting.expectedexceptionbaseattribute?view=mstest-net-4.5)
 - [`OwnerAttribute`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/OwnerAttribute.md)
 - [`PriorityAttribute`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/PriorityAttribute.md)
 - [`TestPropertyAttribute`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/TestPropertyAttribute.md)

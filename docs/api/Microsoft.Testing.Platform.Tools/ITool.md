@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Tools`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 Represents a non-test command that can be invoked by passing its `ITool.Name` as the first positional command-line argument.
 

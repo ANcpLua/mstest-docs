@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Excludes a test, test class, or test assembly from in-assembly parallelization. Affected tests never run concurrently with any other test in the same test source and, when parallelization is enabled, are deferred to run sequentially after every parallelizable test in that source has finished.
 

@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.VisualStudio.TestTools.UnitTesting`
 - Assembly: `MSTest.TestFramework.Extensions.dll`
-- Package: `MSTest.TestFramework` 4.4.1
+- Package: `MSTest.TestFramework` 4.5.1
 
 Represents a single test that is planned to run (i.e. has been discovered and passed the active filter) in the current test run. Returned by `ITestRunInfo.PlannedTests`.
 

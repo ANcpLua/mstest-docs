@@ -195,6 +195,8 @@ Use the following table to find each extension's package and options. A test SDK
 
 Run your test executable with `--help`, or run `dotnet test --help` in MTP mode, to list the options available for your current extension set.
 
+Starting with MTP 2.4, an unknown option error suggests a uniquely matching option name when one is available. If the option belongs to a known Microsoft-provided extension that the test application hasn't registered, the error also identifies the NuGet package that provides the option.
+
 For advanced diagnostics of registered providers and options, run with `--info`.
 
 ## See also

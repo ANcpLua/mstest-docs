@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Capabilities.TestFramework`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 A capability to support stopping test execution gracefully, without cancelling/aborting everything. This is used to support '--maximum-failed-tests'.
 

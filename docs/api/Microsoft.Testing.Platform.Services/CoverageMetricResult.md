@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Services`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 A single correlated coverage measurement (one metric for one scope) exposed through `ITestCoverageResult`. Carries counts; percentage is derived.
 

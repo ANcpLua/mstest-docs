@@ -1,6 +1,6 @@
 # The `TestContext` class
 
-The [`TestContext`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/TestContext.md) class gives useful information and tools to help manage test execution. It lets you access details about the test run and adjust the test environment. This class is part of the [`UnitTesting`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting?view=mstest-net-4.4) namespace.
+The [`TestContext`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/TestContext.md) class gives useful information and tools to help manage test execution. It lets you access details about the test run and adjust the test environment. This class is part of the [`UnitTesting`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.visualstudio.testtools.unittesting?view=mstest-net-4.5) namespace.
 
 ## Accessing the `TestContext` object
 
@@ -105,7 +105,7 @@ MSTest creates the directory under `TestResultsDirectory` when possible and fall
 
 When a passing test registers a file from the directory with `AddResultFile`, MSTest retains the directory until the host collects the attachment. Cleanup is best effort and doesn't change the test outcome.
 
-The property doesn't change the process current directory.
+`TestTempDirectory` is available for .NET and .NET Framework targets, but not for UWP or WinUI targets. The property doesn't change the process current directory.
 
 In MSTest 3.7 and later, the [`TestContext`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/TestContext.md) class also provides new properties helpful for `TestInitialize` and `TestCleanup` methods:
 
@@ -213,6 +213,8 @@ public class TestClassResultFile
     }
 }
 ```
+
+Starting with MSTest 4.5, the native MTP adapter preserves these result files as test attachments so MTP report extensions can include them.
 
 You can also use [`TestContext.Write`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/TestContext.md) or [`TestContext.WriteLine`](../../api/Microsoft.VisualStudio.TestTools.UnitTesting/TestContext.md) methods to write custom messages directly to the test output. Starting with MSTest 4.4, the `Live` output capture mode echoes these messages while the test runs and still attaches them to the final test result. For more information, see [Configure MSTest output](../running-tests/configure.md#output-settings).
 

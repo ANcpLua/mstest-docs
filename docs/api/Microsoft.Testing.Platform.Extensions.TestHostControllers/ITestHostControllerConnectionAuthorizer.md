@@ -2,7 +2,7 @@
 
 - Namespace: `Microsoft.Testing.Platform.Extensions.TestHostControllers`
 - Assembly: `Microsoft.Testing.Platform.dll`
-- Package: `Microsoft.Testing.Platform` 2.4.1
+- Package: `Microsoft.Testing.Platform` 2.5.1
 
 Implemented by an `ITestHostLauncher` that starts the test host under an operating-system security identity of its own, to authorize that identity on controller-side connections.
 

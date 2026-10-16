@@ -14,6 +14,7 @@ Use the following path, based on what you need next:
 - Understand platform behavior in CLI: [Testing with `dotnet test`](dotnet-test.md)
 - Find platform and extension CLI switches in one place: [MTP CLI options reference](cli-options.md)
 - Configure framework runners: [Run tests with MSTest](../mstest/running-tests/overview.md) or [MTP support in NUnit (NUnit runner)](https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-nunit-runner-intro)
+- Host MTP in a UWP or WinUI 3 app: [Test UWP and WinUI 3 apps with MSTest and MTP](../mstest/writing-tests/packaged-apps.md)
 - Add diagnostics, coverage, and reporting: [MTP features](features/overview.md)
 - Build your own extension: [MTP architecture](extending/overview.md), [Extension points](extending/extensions.md), and [Services](extending/services.md)
 - Build editor or IDE integration: [MTP server mode](extending/server-mode.md)
@@ -53,6 +54,8 @@ The main driving factors for the evolution of the new testing platform are detai
 
 MTP supports .NET (.NET 8 and later), .NET Framework (versions 4.6.2 and later), and targets NETStandard 2.0 for maximum compatibility with other runtimes.
 
+Starting with MTP 2.5 and MSTest 4.5, MTP also supports classic UWP, modern .NET UWP, and WinUI 3 AppContainer test hosts through the MSTest.Sdk app-model sidecar. Packaged full-trust and unpackaged WinUI 3 test hosts are also supported. For details, see [Test UWP and WinUI 3 apps with MSTest and MTP](../mstest/writing-tests/packaged-apps.md).
+
 ## Run and debug tests
 
 For detailed guidance on running and debugging MTP test projects from CLI, Visual Studio, Visual Studio Code, and CI pipelines, see [Run and debug tests](run-and-debug.md).
@@ -72,6 +75,8 @@ The NuGet package [Microsoft.Testing.Platform.MSBuild](https://www.nuget.org/pac
 - Automatic detection and registration of installed extension packages.
 
 When this package is active (the default for MSTest, NUnit, and xUnit runners), installing an extension NuGet package is all that's needed — extensions are auto-registered with no code changes. If you disable the auto-generated entry point by setting `<GenerateTestingPlatformEntryPoint>false</GenerateTestingPlatformEntryPoint>`, you must register extensions manually in your `Main` method. Each extension page documents its manual registration call.
+
+Starting with MTP 2.4, Microsoft-provided extension packages constrain their `Microsoft.Testing.Platform` dependency to the current major version. For example, a 2.4 extension requires `Microsoft.Testing.Platform` in the range `[2.4.0, 3.0.0)`. This range prevents NuGet from silently combining an extension with an unsupported future platform major. Keep the platform and extension packages on the same release line.
 
 > [!NOTE]
 > This integration works in a transitive way (a project that references another project referencing this package will behave as if it references the package) and can be disabled through the `IsTestingPlatformApplication` MSBuild property.
